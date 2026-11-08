@@ -1,102 +1,120 @@
-// Ihar Labs · web: carrusel, pestañas, calculadora y formulario. Sin cookies ni rastreo.
+// Ihar Labs · web. Todo lo que se mueve lo mueve el visitante. Sin cookies ni rastreo.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // año del pie
   $$('[data-anyo]').forEach((e) => { e.textContent = String(new Date().getFullYear()); });
 
-  // sombra de la cabecera al bajar
-  const cab = $('.cab');
-  const sombra = () => cab.classList.toggle('con-sombra', scrollY > 8);
-  addEventListener('scroll', sombra, { passive: true }); sombra();
+  // las tarjetas aparecen una vez al llegar a ellas (sin movimiento si el visitante lo pide así)
+  const sinMovimiento = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revelar = $$('[data-revelar]');
+  if (sinMovimiento || !('IntersectionObserver' in window)) revelar.forEach((e) => e.classList.add('visto'));
+  else { const obs = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('visto'); obs.unobserve(x.target); } }), { rootMargin: '0px 0px -6% 0px' }); revelar.forEach((e) => obs.observe(e)); }
 
-  // carrusel de la portada: cambia de pantalla cada 4 s
-  const car = $('[data-carrusel]');
-  if (car && !quieto) {
-    const imgs = $$('img', car); let i = 0;
-    setInterval(() => { imgs[i].classList.remove('on'); i = (i + 1) % imgs.length; imgs[i].classList.add('on'); }, 4000);
-  }
+  // el antes y el después: el tirador sigue al control de rango (accesible con teclado)
+  $$('[data-comparar]').forEach((fig) => {
+    const marco = $('.comparar-marco', fig);
+    const rango = $('[data-comparar-rango]', fig);
+    const poner = () => marco.style.setProperty('--pos', `${rango.value}%`);
+    rango.addEventListener('input', poner);
+    // arrastrar o tocar en cualquier punto del marco también mueve el tirador
+    let arrastrando = false;
+    const desde = (x) => { const r = marco.getBoundingClientRect(); rango.value = String(Math.min(100, Math.max(0, ((x - r.left) / r.width) * 100))); poner(); };
+    marco.addEventListener('pointerdown', (e) => { if (e.target === rango) return; arrastrando = true; marco.setPointerCapture(e.pointerId); desde(e.clientX); });
+    marco.addEventListener('pointermove', (e) => { if (arrastrando) desde(e.clientX); });
+    marco.addEventListener('pointerup', () => { arrastrando = false; });
+    marco.addEventListener('pointercancel', () => { arrastrando = false; });
+    poner();
+  });
 
-  // pestañas de Flow
+  // pestañas de pantallas: cambia la imagen al pulsar
   $$('.pestanas').forEach((grupo) => {
     const pant = $('.pant', grupo.parentElement);
-    grupo.addEventListener('click', (e) => {
-      const b = e.target.closest('button'); if (!b || b.getAttribute('aria-selected') === 'true') return;
-      $$('button', grupo).forEach((x) => x.setAttribute('aria-selected', String(x === b)));
-      pant.classList.add('cambiando');
-      const nueva = new Image(); nueva.src = b.dataset.img;
-      nueva.onload = () => { pant.src = b.dataset.img; pant.classList.remove('cambiando'); };
+    const botones = $$('button', grupo);
+    const elegir = (b) => {
+      botones.forEach((x) => { x.setAttribute('aria-selected', String(x === b)); x.tabIndex = x === b ? 0 : -1; });
+      const nueva = new Image();
+      nueva.onload = () => { pant.src = b.dataset.img; pant.alt = b.dataset.alt || ''; };
+      nueva.src = b.dataset.img;
+    };
+    botones.forEach((b, i) => { b.tabIndex = i === 0 ? 0 : -1; });
+    grupo.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b && b.getAttribute('aria-selected') !== 'true') elegir(b); });
+    grupo.addEventListener('keydown', (e) => {
+      const i = botones.indexOf(document.activeElement); if (i < 0) return;
+      const j = e.key === 'ArrowRight' ? (i + 1) % botones.length : e.key === 'ArrowLeft' ? (i - 1 + botones.length) % botones.length : -1;
+      if (j >= 0) { e.preventDefault(); botones[j].focus(); elegir(botones[j]); }
     });
   });
 
   // calculadora de suscripciones
-  const eur = (n) => n.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: 'always' }) + ' €';
+  // punto de miles siempre (es-ES no lo pone en 4 cifras) y coma decimal
+  const eur = (n) => { const [e, d] = n.toFixed(2).split('.'); return `${e.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${d} €`; };
   const calc = $('.calc');
   if (calc) {
     const v = (k) => Number($(`[data-i="${k}"]`, calc).value);
     const o = (k) => $(`[data-o="${k}"]`, calc);
     const pintar = () => {
       const anual = v('personas') * v('herr') * v('precio') * 12;
-      o('personas').textContent = v('personas');
-      o('herr').textContent = v('herr');
+      o('personas').textContent = String(v('personas'));
+      o('herr').textContent = String(v('herr'));
       o('precio').textContent = `${v('precio')} €`;
       o('anual').textContent = eur(anual);
-      o('cinco').textContent = `En cinco años: ${eur(anual * 5)}`;
+      o('cinco').textContent = eur(anual * 5);
     };
     calc.addEventListener('input', pintar); pintar();
   }
 
-  // los botones «Pruébela», «Estudiar mi caso»… dejan elegido el interés en el formulario
+  // los enlaces con data-interes dejan elegido el tema en el formulario
   const form = $('#form-contacto');
   $$('[data-interes]').forEach((a) => a.addEventListener('click', () => {
     const sel = form?.elements.interes; if (!sel) return;
     const op = [...sel.options].find((x) => x.text === a.dataset.interes); if (op) sel.value = op.value;
   }));
 
-  // formulario: si hay servicio de envío configurado (data-endpoint) se manda por ahí;
-  // si no, se abre el correo del visitante con el mensaje ya escrito para hola@iharlabs.com
+  // formulario: validación en texto, envío por Web3Forms; sin servicio, abre el correo del visitante
   if (form) {
     const estado = $('.form-estado', form);
-    const decir = (t, clase = '') => { estado.textContent = t; estado.className = `form-estado ${clase}`; };
+    const decir = (t, clase = '') => { estado.textContent = t; estado.className = `form-estado ${clase}`.trim(); };
+    const marcar = (campo, texto) => {
+      campo.classList.add('mal'); campo.setAttribute('aria-invalid', 'true');
+      let p = campo.parentElement.querySelector('.campo-error');
+      if (!p) { p = document.createElement('p'); p.className = 'campo-error'; campo.parentElement.appendChild(p); }
+      p.textContent = texto;
+    };
+    const limpiar = () => { $$('.mal', form).forEach((x) => { x.classList.remove('mal'); x.removeAttribute('aria-invalid'); }); $$('.campo-error', form).forEach((x) => x.remove()); };
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const f = form.elements;
-      $$('.mal', form).forEach((x) => x.classList.remove('mal'));
-      const faltan = ['nombre', 'correo', 'mensaje'].filter((k) => !f[k].value.trim());
-      if (f.correo.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.correo.value.trim())) faltan.push('correo');
-      faltan.forEach((k) => f[k].classList.add('mal'));
-      if (faltan.length) { decir('Revise los campos marcados en rojo.', 'error'); f[faltan[0]].focus(); return; }
-      if (!f.privacidad.checked) { decir('Para enviarlo, acepte la política de privacidad.', 'error'); return; }
-      if (f.botcheck.checked) return; // un robot
+      limpiar();
+      const errores = [];
+      if (!f.nombre.value.trim()) errores.push([f.nombre, 'Escriba su nombre.']);
+      if (!f.correo.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.correo.value.trim())) errores.push([f.correo, 'Escriba un correo como nombre@empresa.com.']);
+      if (!f.mensaje.value.trim()) errores.push([f.mensaje, 'Cuéntenos en una o dos frases qué le gustaría mejorar.']);
+      if (!f.privacidad.checked) errores.push([f.privacidad, 'Marque la casilla para que podamos responderle.']);
+      if (errores.length) { errores.forEach(([c, t]) => marcar(c, t)); decir('Falta algo: revise lo marcado.', 'error'); errores[0][0].focus(); return; }
+      if (f.botcheck.checked) return;
 
       const datos = { nombre: f.nombre.value.trim(), empresa: f.empresa.value.trim(), correo: f.correo.value.trim(), telefono: f.telefono.value.trim(), interes: f.interes.value, mensaje: f.mensaje.value.trim() };
-      const endpoint = form.dataset.endpoint;
-      if (!endpoint) {
+      const asunto = `Web · ${datos.interes} · ${datos.empresa || datos.nombre}`;
+      if (!form.dataset.endpoint || !form.dataset.clave) {
         const cuerpo = `Nombre: ${datos.nombre}\nEmpresa: ${datos.empresa}\nCorreo: ${datos.correo}\nTeléfono: ${datos.telefono}\nLe interesa: ${datos.interes}\n\n${datos.mensaje}`;
-        location.href = `mailto:hola@iharlabs.com?subject=${encodeURIComponent(`Web · ${datos.interes} · ${datos.empresa || datos.nombre}`)}&body=${encodeURIComponent(cuerpo)}`;
+        location.href = `mailto:hola@iharlabs.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
         decir('Se ha abierto su correo con el mensaje escrito. Solo falta pulsar «Enviar».', 'ok');
         return;
       }
       const boton = $('button[type=submit]', form);
       boton.disabled = true; decir('Enviando…');
       try {
-        const r = await fetch(endpoint, {
+        const r = await fetch(form.dataset.endpoint, {
           method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ access_key: form.dataset.clave || undefined, subject: `Web · ${datos.interes} · ${datos.empresa || datos.nombre}`, from_name: 'Web de Ihar Labs', replyto: datos.correo, ...datos }),
+          body: JSON.stringify({ access_key: form.dataset.clave, subject: asunto, from_name: 'Web de Ihar Labs', replyto: datos.correo, ...datos }),
         });
         if (!r.ok) throw new Error(String(r.status));
-        form.reset(); decir('¡Gracias! Le responderemos en un día laborable.', 'ok');
+        form.reset(); decir('Recibido. Le respondemos en un día laborable.', 'ok');
       } catch {
         decir('No se ha podido enviar. Escríbanos a hola@iharlabs.com y le respondemos igual.', 'error');
       } finally { boton.disabled = false; }
     });
-  }
-
-  // las secciones aparecen suavemente al llegar a ellas
-  if (!quieto && 'IntersectionObserver' in window) {
-    const obs = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('visto'); obs.unobserve(x.target); } }), { rootMargin: '0px 0px -8% 0px' });
-    $$('.secc-cab, .serv, .caso, .calc, .pasos li, .faq, .form').forEach((e) => { e.classList.add('aparece'); obs.observe(e); });
   }
 })();

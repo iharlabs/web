@@ -1,8 +1,8 @@
-@font-face { font-family: 'Inter'; src: url('../fuentes/inter-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Geist'; src: url('../fuentes/geist-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: 'Inter', system-ui, sans-serif; color: #16233c; background: #f4f6fb; line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
-.cab { background: #182a60; }
-.cab a { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 19px; padding: 16px 0; }
+body { margin: 0; font-family: 'Geist', system-ui, sans-serif; color: #0f1a3a; background: #f5f7fb; line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased; }
+.cab { background: #0b1230; }
+.cab a { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-size: 18px; font-weight: 500; padding: 16px 0; }
 .cab img { width: 30px; height: 30px; border-radius: 8px; }
 .cont { width: min(820px, 100% - 32px); margin-inline: auto; }
 main { background: #fff; margin: 32px auto 48px; padding: 40px clamp(20px, 5vw, 52px); border-radius: 18px; box-shadow: 0 12px 32px rgba(16, 28, 68, .08); }

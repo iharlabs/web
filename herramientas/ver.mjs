@@ -2,7 +2,7 @@
 import { chromium } from 'playwright-core';
 const out = process.argv[2] || '.';
 const b = await chromium.launch({ channel: 'chrome', headless: true });
-for (const [n, w, h, m] of [['escritorio', 1440, 900, false], ['movil', 390, 844, true]]) {
+for (const [n, w, h, m] of [['escritorio', 1440, 900, false], ['tableta', 768, 1024, true], ['movil', 375, 812, true]]) {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, isMobile: m, hasTouch: m, reducedMotion: 'reduce' });
   const p = await ctx.newPage();
   const errores = []; p.on('pageerror', (e) => errores.push(e.message)); p.on('console', (c) => { if (c.type() === 'error') errores.push(c.text()); });
