@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#0b1230">
   <link rel="icon" href="img/marca.svg" type="image/svg+xml">
   <link rel="preload" href="fuentes/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="img/flow/banco.webp" as="image">
+  <link rel="preload" href="img/flow/inicio.webp" as="image">
   <meta property="og:title" content="Ihar Labs · Software hecho para su empresa">
   <meta property="og:description" content="De su Excel o de la herramienta que paga hoy a una aplicación propia, puesta en marcha con usted.">
   <meta property="og:image" content="https://iharlabs.com/img/flow/inicio.webp">
@@ -79,9 +79,9 @@
           </div>
         </div>
         <div class="comparar-despues">
-          <img src="img/flow/banco.webp" alt="La hoja del Santander en Flow: las mismas decenas, cuadradas con el banco y con la diferencia señalada" width="1680" height="1050">
+          <img src="img/flow/inicio.webp" alt="El inicio de Flow con la misma empresa: posición de tesorería, cash flow del año, bancos cuadrados y evolución por decenas" width="1680" height="1050">
         </div>
-        <div class="comparar-linea" aria-hidden="true"><span class="comparar-tirador"></span></div>
+        <div class="comparar-linea" aria-hidden="true"><span class="comparar-tirador"><span class="comparar-pista">Arrastre</span></span></div>
         <label class="comparar-control"><span class="oculto">Arrastre para comparar la hoja de cálculo con Flow</span>
           <input type="range" min="0" max="100" value="46" step="0.5" data-comparar-rango>
         </label>
@@ -118,12 +118,8 @@
             <span>Nóminas</span><span>-33.072</span><span class="err">#¡REF!</span>
             <span>Saldo</span><span>428.611</span><span class="err">#¡VALOR!</span>
           </div>
-          <div class="mini-app">
-            <span class="mini-app-cab">Santander <em>Cuadrado</em></span>
-            <span class="mini-barra" style="--w: 62%"></span>
-            <span class="mini-barra" style="--w: 84%"></span>
-            <span class="mini-barra" style="--w: 48%"></span>
-          </div>
+          <div class="mini-captura"><img src="img/flow/posicion.webp" alt="" width="1680" height="1050" loading="lazy"></div>
+          <span class="mini-sello">Cuadrado con el banco</span>
         </div>
         <h3>Tiene un Excel que ya no da más de sí</h3>
         <p>Lo entiende una persona, se rompe cuando alguien toca una fórmula y vive en un correo. Lo convertimos en una aplicación: los mismos cálculos, con usuarios, permisos, historial y acceso desde el móvil.</p>
@@ -131,10 +127,12 @@
       </article>
       <article class="tarjeta" data-revelar>
         <div class="tarjeta-vis vis-subs" aria-hidden="true">
-          <div class="mini-sub"><span>Gestor de tareas</span><em>12 €/usuario</em></div>
-          <div class="mini-sub"><span>Documentación</span><em>10 €/usuario</em></div>
-          <div class="mini-sub"><span>CRM</span><em>25 €/usuario</em></div>
-          <div class="mini-sub propia"><span>Su herramienta</span><em>0 €/usuario</em></div>
+          <div class="mini-subs">
+            <div class="mini-sub"><span>Gestor de tareas</span><em>12 €/usuario</em></div>
+            <div class="mini-sub"><span>Documentación</span><em>10 €/usuario</em></div>
+            <div class="mini-sub"><span>CRM</span><em>25 €/usuario</em></div>
+          </div>
+          <div class="mini-propia"><span>Su herramienta</span><b>0 €</b><small>por usuario, para siempre</small></div>
         </div>
         <h3>Paga suscripciones que usa a medias</h3>
         <p>Herramientas genéricas que se pagan por persona y por mes, para siempre, y de las que usa una parte. Le hacemos la suya, con lo que necesita y nada más, y deja de pagar por usuario.</p>
@@ -142,10 +140,13 @@
       </article>
       <article class="tarjeta" data-revelar>
         <div class="tarjeta-vis vis-tareas" aria-hidden="true">
-          <div class="mini-tarea hecha"><i></i><span>Extracto del banco clasificado</span><em>20 de 20</em></div>
-          <div class="mini-tarea hecha"><i></i><span>Factura leída y en previsión</span><em>1.745,30 €</em></div>
-          <div class="mini-tarea hecha"><i></i><span>Vencimientos de la semana</span><em>3 avisos</em></div>
-          <div class="mini-tarea"><i></i><span>Revisar 1 movimiento dudoso</span><em>usted</em></div>
+          <div class="mini-movil"><img src="img/flow/movil-inicio.webp" alt="" width="640" height="1385" loading="lazy"></div>
+          <div class="mini-hechas">
+            <div class="mini-tarea hecha"><i></i><span>Extracto clasificado</span><em>20/20</em></div>
+            <div class="mini-tarea hecha"><i></i><span>Factura leída</span><em>1.745 €</em></div>
+            <div class="mini-tarea hecha"><i></i><span>Vencimientos avisados</span><em>3</em></div>
+            <div class="mini-tarea"><i></i><span>Revisar 1 movimiento</span><em>usted</em></div>
+          </div>
         </div>
         <h3>Pierde horas en tareas que podrían hacerse solas</h3>
         <p>Pasar el extracto, leer facturas, preparar el informe del mes, avisar de lo que vence. Pasa a hacerse solo, con inteligencia artificial solo donde de verdad ahorra tiempo: leer un PDF, clasificar un movimiento, proponer un cuadrante.</p>
@@ -189,9 +190,9 @@
       <div class="producto-vis">
         <div class="pestanas" role="tablist" aria-label="Pantallas de Flow">
           <button type="button" role="tab" aria-selected="true" data-img="img/flow/inicio.webp" data-alt="Inicio de Flow: posición de tesorería, cash flow del año y evolución por decenas">Inicio</button>
-          <button type="button" role="tab" aria-selected="false" data-img="img/flow/extracto.webp" data-alt="Un extracto importado en Flow, con cada movimiento ya clasificado">Extracto</button>
-          <button type="button" role="tab" aria-selected="false" data-img="img/flow/banco.webp" data-alt="La hoja del banco por decenas, cuadrada con el saldo del banco">Hoja del banco</button>
-          <button type="button" role="tab" aria-selected="false" data-img="img/flow/graficas.webp" data-alt="Gráficas de Flow">Gráficas</button>
+          <button type="button" role="tab" aria-selected="false" data-img="img/flow/graficas.webp" data-alt="Gráficas de Flow: posición de tesorería, en qué se va el dinero, cash flow por mes y entradas y salidas">Gráficas</button>
+          <button type="button" role="tab" aria-selected="false" data-img="img/flow/posicion.webp" data-alt="Posición de tesorería por decenas, con cada decena cuadrada con el banco">Posición de tesorería</button>
+          <button type="button" role="tab" aria-selected="false" data-img="img/flow/comparativa.webp" data-alt="Comparativa de un año con el anterior: cash flow generado, qué ha cambiado más y mes a mes">Comparativa</button>
         </div>
         <div class="marco">
           <img class="pant" src="img/flow/inicio.webp" alt="Inicio de Flow: posición de tesorería, cash flow del año y evolución por decenas" width="1680" height="1050" loading="lazy">

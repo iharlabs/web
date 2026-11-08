@@ -26,6 +26,31 @@
     marco.addEventListener('pointerup', () => { arrastrando = false; });
     marco.addEventListener('pointercancel', () => { arrastrando = false; });
     poner();
+    // al cargar, el tirador hace un barrido solo (así se entiende qué es) y deja una pista «Arrastre»
+    // hasta que el visitante lo toca; con movimiento reducido no se mueve nada
+    const pista = $('.comparar-pista', fig);
+    const quitarPista = () => { pista?.classList.add('fuera'); };
+    rango.addEventListener('input', quitarPista, { once: true });
+    marco.addEventListener('pointerdown', quitarPista, { once: true });
+    if (!sinMovimiento) {
+      const ruta = [[0, 46], [900, 8], [2300, 96], [3300, 58]]; // [ms, posición]
+      const t0 = performance.now() + 700;
+      let tocado = false;
+      const parar = () => { tocado = true; };
+      marco.addEventListener('pointerdown', parar, { once: true });
+      const suaviza = (t) => 1 - Math.pow(1 - t, 3);
+      const paso = (ahora) => {
+        if (tocado) return;
+        const t = ahora - t0;
+        if (t < 0) { requestAnimationFrame(paso); return; }
+        let i = 1; while (i < ruta.length && ruta[i][0] < t) i++;
+        if (i >= ruta.length) { rango.value = String(ruta[ruta.length - 1][1]); poner(); return; }
+        const [ta, pa] = ruta[i - 1], [tb, pb] = ruta[i];
+        rango.value = String(pa + (pb - pa) * suaviza((t - ta) / (tb - ta))); poner();
+        requestAnimationFrame(paso);
+      };
+      requestAnimationFrame(paso);
+    }
   });
 
   // pestañas de pantallas: cambia la imagen al pulsar
