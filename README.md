@@ -38,7 +38,7 @@ npm run optimizar
   (datos de ejemplo, hechos para promoción).
 - `herramientas/ver.mjs` y `herramientas/pagina-entera.mjs`: fotos de la web para revisarla.
 
-## Pendiente
+## Publicación
 
 - Publicada con GitHub Pages desde el repositorio público iharlabs/web (rama main); DNS en Hostinger: 4 registros A a GitHub y www → iharlabs.github.io.
 - Formulario: conectado a Web3Forms (cuenta de igor@iharlabs.com); los mensajes llegan a ese buzón.
