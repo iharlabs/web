@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ihar Labs">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3468ee"/><stop offset="1" stop-color="#182a60"/></linearGradient>
+    <radialGradient id="p" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#b8f5dd"/><stop offset="1" stop-color="#5ee0b0"/></radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#f)"/>
+  <!-- la «i»: un trazo y un punto encendido -->
+  <rect x="17" y="27" width="8" height="21" rx="4" fill="#fff"/>
+  <circle cx="21" cy="18.5" r="5" fill="url(#p)"/>
+  <!-- la «L» -->
+  <path d="M34 16.5a4 4 0 0 1 8 0V40h7.5a4 4 0 0 1 0 8H38a4 4 0 0 1-4-4z" fill="#fff" opacity=".92"/>
+</svg>

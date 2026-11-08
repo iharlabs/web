@@ -1,0 +1,6 @@
+node_modules/
+herramientas/datos/
+*.log
+herramientas/originales/
+Vista previa de la web.jpg
+.claude/

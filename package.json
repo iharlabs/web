@@ -1,0 +1,16 @@
+{
+  "name": "iharlabs-web",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Web de Ihar Labs (iharlabs.com): página estática y herramientas para sacar capturas de las apps con datos de ejemplo",
+  "type": "module",
+  "scripts": {
+    "dev": "node herramientas/servir.mjs 5190",
+    "capturas": "node herramientas/capturar-flow.mjs",
+    "optimizar": "node herramientas/optimizar.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.48.2",
+    "sharp": "^0.33.5"
+  }
+}
