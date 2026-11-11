@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Publicaciones de Instagram · Ihar Labs</title>
+<!-- Las 3 publicaciones para anclar en el perfil: tres carruseles de 5 imágenes de 1080 × 1350 (4:5).
+     Se fotografían con: node herramientas/instagram.mjs → carpeta redes/instagram/ -->
+<style>
+@font-face { font-family: 'Geist'; src: url('../fuentes/geist-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; }
+@font-face { font-family: 'Geist Mono'; src: url('../fuentes/geist-mono-latin-wght-normal.woff2') format('woff2'); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #222; font-family: 'Geist', system-ui, sans-serif; color: #fff; padding: 20px; display: flex; flex-wrap: wrap; gap: 24px; -webkit-font-smoothing: antialiased; }
+
+/* ---------- la diapositiva ---------- */
+.s { position: relative; width: 1080px; height: 1350px; overflow: hidden; background: #060913; padding: 112px 96px 190px; display: flex; flex-direction: column; gap: 44px; }
+.s::before { content: ''; position: absolute; inset: 0; background: radial-gradient(55% 40% at 12% 10%, rgba(47, 209, 138, .26), transparent 70%), radial-gradient(60% 45% at 92% 22%, rgba(91, 140, 255, .42), transparent 70%), radial-gradient(70% 40% at 50% 105%, rgba(61, 109, 242, .3), transparent 70%); }
+.s::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px); background-size: 120px 40px; mask-image: radial-gradient(85% 70% at 50% 35%, #000 20%, transparent 100%); -webkit-mask-image: radial-gradient(85% 70% at 50% 35%, #000 20%, transparent 100%); }
+.s > * { position: relative; z-index: 1; }
+.s.b::before { background: radial-gradient(60% 45% at 90% 8%, rgba(47, 209, 138, .24), transparent 70%), radial-gradient(60% 45% at 8% 30%, rgba(91, 140, 255, .4), transparent 70%), radial-gradient(70% 40% at 50% 105%, rgba(47, 209, 138, .16), transparent 70%); }
+.s.c::before { background: radial-gradient(60% 45% at 50% 0%, rgba(91, 140, 255, .44), transparent 70%), radial-gradient(60% 40% at 0% 100%, rgba(47, 209, 138, .24), transparent 70%); }
+.portada { justify-content: center; gap: 40px; }
+.medio { justify-content: center; gap: 56px; }
+
+/* ---------- textos ---------- */
+.pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; padding: 14px 26px; border-radius: 999px; background: rgba(255, 255, 255, .07); border: 2px solid rgba(255, 255, 255, .14); color: #c6d0ec; font-size: 30px; font-weight: 500; line-height: 1; }
+.pill i { width: 14px; height: 14px; border-radius: 50%; background: #2fd18a; box-shadow: 0 0 0 7px rgba(47, 209, 138, .2); }
+h1 { font-size: 116px; font-weight: 600; line-height: 1; letter-spacing: -.045em; }
+h2 { font-size: 82px; font-weight: 600; line-height: 1.03; letter-spacing: -.04em; }
+.sub { font-size: 42px; line-height: 1.38; color: #a9b4d6; max-width: 20em; }
+.peq { font-size: 28px; color: #7f8bb0; }
+.brillo { background: linear-gradient(100deg, #2fd18a 0%, #46b3d6 45%, #5b8cff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.celda { position: relative; display: inline-block; padding: 0 .14em; margin: 0 .04em; box-shadow: inset 0 0 0 .045em #2fd18a; background: rgba(47, 209, 138, .1); }
+.celda::after { content: ''; position: absolute; right: -.07em; bottom: -.07em; width: .14em; height: .14em; background: #2fd18a; border: .028em solid #060913; }
+
+/* ---------- pie de cada imagen ---------- */
+.pie { position: absolute !important; left: 96px; right: 96px; bottom: 78px; display: flex; align-items: center; justify-content: space-between; font-size: 32px; font-weight: 600; letter-spacing: -.02em; }
+.pie .marca { display: flex; align-items: center; gap: 16px; }
+.pie .n { font: 500 28px/1 'Geist Mono', monospace; color: #7f8bb0; }
+.pie .sigue { display: flex; align-items: center; gap: 14px; color: #c6d0ec; font-weight: 500; font-size: 30px; }
+.pie .sigue::after { content: ''; width: 16px; height: 16px; border-top: 4px solid #5b8cff; border-right: 4px solid #5b8cff; transform: rotate(45deg); }
+
+/* ---------- piezas ---------- */
+.frases { display: grid; gap: 20px; justify-items: start; }
+.frases span { padding: 20px 28px; border-radius: 18px; border: 2px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .05); color: #c6d0ec; font: 500 36px/1.15 'Geist Mono', monospace; }
+.frases span.r { color: #ff8b82; border-color: rgba(255, 123, 114, .4); background: rgba(255, 123, 114, .08); }
+.frases span:nth-child(2) { margin-left: 70px; } .frases span:nth-child(3) { margin-left: 20px; } .frases span:nth-child(4) { margin-left: 110px; }
+
+.marco { border-radius: 28px; overflow: hidden; background: #fff; box-shadow: 0 0 0 2px rgba(255, 255, 255, .16), 0 50px 130px rgba(61, 109, 242, .45), 0 20px 60px rgba(0, 0, 0, .6); }
+.marco img { display: block; width: 100%; }
+.vis { position: relative; margin-top: auto; }
+.vis .tel { position: absolute; right: -30px; bottom: -40px; width: 250px; padding: 10px; border-radius: 44px; background: #05070f; box-shadow: 0 0 0 2px rgba(255, 255, 255, .16), 0 30px 80px rgba(0, 0, 0, .7); }
+.vis .tel img { display: block; width: 100%; border-radius: 34px; }
+.recorte { aspect-ratio: 888 / 560; }
+.recorte img { width: 128%; max-width: none; }
+
+.origen { display: flex; align-items: center; gap: 20px; }
+.archivo { display: inline-flex; align-items: center; gap: 14px; padding: 14px 22px 14px 16px; border-radius: 16px; background: rgba(47, 209, 138, .1); border: 2px solid rgba(47, 209, 138, .34); color: #c9f5e0; font: 500 28px/1 'Geist Mono', monospace; }
+.archivo.app { background: rgba(91, 140, 255, .12); border-color: rgba(91, 140, 255, .4); color: #d6e2ff; font-family: 'Geist', sans-serif; font-size: 30px; }
+.archivo img { width: 36px; height: 36px; border-radius: 10px; }
+.hoja-ico { width: 36px; height: 36px; border-radius: 9px; background: #1f9d5c; position: relative; }
+.hoja-ico::before { content: ''; position: absolute; inset: 9px; background: linear-gradient(#fff 0 0) 0 0 / 100% 4px no-repeat, linear-gradient(#fff 0 0) 0 7px / 100% 4px no-repeat, linear-gradient(#fff 0 0) 0 14px / 100% 4px no-repeat; }
+.app-ico { width: 36px; height: 36px; border-radius: 9px; background: linear-gradient(135deg, #5b8cff, #2f5be0); position: relative; }
+.app-ico::before { content: ''; position: absolute; left: 9px; right: 9px; bottom: 9px; height: 18px; background: linear-gradient(#fff 0 0) 0 100% / 4px 40% no-repeat, linear-gradient(#fff 0 0) 7px 100% / 4px 70% no-repeat, linear-gradient(#fff 0 0) 14px 100% / 4px 100% no-repeat; }
+.flecha { width: 56px; height: 4px; border-radius: 3px; background: linear-gradient(90deg, #2fd18a, #5b8cff); position: relative; }
+.flecha::after { content: ''; position: absolute; right: -2px; top: -8px; width: 16px; height: 16px; border-top: 4px solid #5b8cff; border-right: 4px solid #5b8cff; transform: rotate(45deg); }
+
+.pares { display: grid; gap: 18px; }
+.par { border-radius: 24px; border: 2px solid rgba(255, 255, 255, .1); overflow: hidden; background: rgba(8, 12, 26, .7); }
+.par p { position: relative; padding: 24px 28px 24px 78px; font-size: 38px; line-height: 1.25; }
+.par p::before { position: absolute; left: 30px; top: 22px; font: 600 38px/1.25 'Geist Mono', monospace; }
+.par .menos { color: #98a4c8; background: rgba(255, 123, 114, .05); }
+.par .menos::before { content: '−'; color: #ff8b82; }
+.par .mas { color: #fff; background: rgba(47, 209, 138, .08); border-top: 2px solid rgba(255, 255, 255, .08); }
+.par .mas::before { content: '+'; color: #2fd18a; }
+
+.lista { list-style: none; display: grid; gap: 26px; }
+.lista li { position: relative; padding-left: 68px; font-size: 42px; line-height: 1.25; color: #eef2ff; }
+.lista li::before { content: ''; position: absolute; left: 0; top: 6px; width: 42px; height: 42px; border-radius: 50%; background: rgba(47, 209, 138, .18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%232fd18a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/28px no-repeat; }
+
+.pasos { display: grid; gap: 34px; margin-top: 8px; }
+.paso { display: grid; grid-template-columns: 110px 1fr; gap: 34px; align-items: start; padding: 52px 48px; border-radius: 32px; border: 2px solid rgba(255, 255, 255, .1); background: linear-gradient(180deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02)); }
+.paso i { display: grid; place-items: center; width: 110px; height: 110px; border-radius: 30px; background: linear-gradient(100deg, #2fd18a, #46b3d6 45%, #5b8cff); color: #04121a; font: 600 60px/1 'Geist', sans-serif; font-style: normal; }
+.paso b { display: block; font-size: 58px; font-weight: 600; letter-spacing: -.03em; line-height: 1.1; }
+.paso p { margin-top: 18px; font-size: 40px; line-height: 1.35; color: #a9b4d6; }
+
+.cta { justify-content: center; gap: 44px; }
+.boton { align-self: flex-start; display: inline-flex; align-items: center; gap: 18px; padding: 30px 44px; border-radius: 24px; background: #3864e6; color: #fff; font-size: 40px; font-weight: 600; box-shadow: 0 0 0 2px rgba(255, 255, 255, .14) inset, 0 24px 70px rgba(61, 109, 242, .55); }
+.boton::after { content: ''; width: 18px; height: 18px; border-top: 5px solid #fff; border-right: 5px solid #fff; transform: rotate(-45deg) translateY(4px); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <radialGradient id="punto" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d6fbe9"/><stop offset="1" stop-color="#5ee0b0"/></radialGradient>
+  <linearGradient id="cuadro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3468ee"/><stop offset="1" stop-color="#182a60"/></linearGradient>
+  <symbol id="logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="url(#cuadro)"/><rect x="17" y="27" width="8" height="21" rx="4" fill="#fff"/><circle cx="21" cy="18.5" r="5" fill="url(#punto)"/><path d="M34 16.5a4 4 0 0 1 8 0V40h7.5a4 4 0 0 1 0 8H38a4 4 0 0 1-4-4z" fill="#fff" opacity=".94"/></symbol>
+</defs></svg>
+
+<!-- ============================ PUBLICACIÓN 1 · Qué hacemos ============================ -->
+<section class="s portada" id="p1-1">
+  <p class="pill"><i></i>Qué hacemos</p>
+  <h1>De <span class="celda">Excel</span><br>a su <span class="brillo">propia<br>aplicación</span>.</h1>
+  <p class="sub">La hoja de cálculo que sostiene su empresa, convertida en una app de verdad.</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="sigue">Deslice</span></div>
+</section>
+
+<section class="s" id="p1-2">
+  <h2>¿Le suena?</h2>
+  <div class="frases">
+    <span>v42_definitivo_FINAL.xlsm</span>
+    <span class="r">#¡REF!</span>
+    <span>«No abrir sin avisar a Marta»</span>
+    <span class="r">¿Quién ha tocado la fórmula?</span>
+    <span>Resumen (no tocar)</span>
+  </div>
+  <p class="sub" style="margin-top:auto">Excel es una maravilla para empezar. El problema llega cuando la empresa entera depende de un archivo.</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">2 / 5</span></div>
+</section>
+
+<section class="s" id="p1-3">
+  <h2>Lo convertimos en <span class="brillo">su aplicación</span>.</h2>
+  <p class="sub">Con sus mismos números. Sin fórmulas que se rompen.</p>
+  <div class="vis">
+    <div class="marco"><img src="../img/flow/inicio.webp" alt=""></div>
+    <div class="tel"><img src="../img/flow/movil-inicio.webp" alt=""></div>
+    <p class="peq" style="margin-top:22px">Empresa y cifras de ejemplo.</p>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">3 / 5</span></div>
+</section>
+
+<section class="s medio" id="p1-4">
+  <h2>Qué cambia</h2>
+  <div class="pares">
+    <div class="par"><p class="menos">Un archivo que va y viene por correo</p><p class="mas">Un enlace, y cada uno con su usuario</p></div>
+    <div class="par"><p class="menos">Solo se usa bien en el ordenador</p><p class="mas">También en el móvil</p></div>
+    <div class="par"><p class="menos">Nadie sabe quién cambió qué</p><p class="mas">Historial con nombre y fecha</p></div>
+    <div class="par"><p class="menos">Copiar y pegar del banco</p><p class="mas">Importa los extractos sola</p></div>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">4 / 5</span></div>
+</section>
+
+<section class="s cta" id="p1-5">
+  <h1>Enséñenos<br>su <span class="celda">Excel</span>.</h1>
+  <p class="sub">Le decimos cómo sería su aplicación y cuánto cuesta, por escrito, antes de empezar.</p>
+  <p class="boton">Enlace en la biografía</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">iharlabs.com</span></div>
+</section>
+
+<!-- ============================ PUBLICACIÓN 2 · Ya lo hemos hecho ============================ -->
+<section class="s b portada" id="p2-1">
+  <p class="pill"><i></i>Ya lo hemos hecho</p>
+  <h1>Dos Excel<br>que ya son<br><span class="brillo">aplicaciones</span>.</h1>
+  <p class="sub">No es teoría: se usan cada día.</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="sigue">Deslice</span></div>
+</section>
+
+<section class="s b" id="p2-2">
+  <div class="origen"><span class="archivo"><i class="hoja-ico"></i>CASH FLOW.xlsm</span><i class="flecha"></i><span class="archivo app"><img src="../img/flow/icono-flow.png" alt="">Flow</span></div>
+  <h2>Era una plantilla de tesorería.</h2>
+  <p class="sub">Con cuarenta versiones. Hoy es Flow.</p>
+  <div class="vis">
+    <div class="marco"><img src="../img/flow/inicio.webp" alt=""></div>
+    <p class="peq" style="margin-top:22px">Empresa y cifras de ejemplo.</p>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">2 / 5</span></div>
+</section>
+
+<section class="s b" id="p2-3">
+  <h2>Flow: la tesorería, <span class="brillo">clara y al día</span>.</h2>
+  <ul class="lista">
+    <li>El extracto del banco se clasifica solo</li>
+    <li>Una foto de la factura y ya está en la previsión</li>
+    <li>Cada decena se cuadra con el banco</li>
+  </ul>
+  <div class="vis">
+    <div class="marco recorte"><img src="../img/flow/graficas.webp" alt=""></div>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">3 / 5</span></div>
+</section>
+
+<section class="s b" id="p2-4">
+  <div class="origen"><span class="archivo"><i class="hoja-ico"></i>CALENDARIO LABORAL.xlsm</span><i class="flecha"></i><span class="archivo app"><i class="app-ico"></i>Turnos</span></div>
+  <h2>Era un calendario laboral.</h2>
+  <p class="sub">Hoy es la app de turnos y fichaje que usan farmacias cada día.</p>
+  <div class="vis">
+    <div class="marco"><img src="../img/turnos/calendario.webp" alt=""></div>
+    <div class="tel"><img src="../img/turnos/m_hoy.webp" alt=""></div>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">4 / 5</span></div>
+</section>
+
+<section class="s b cta" id="p2-5">
+  <h1>¿Cuál es<br><span class="brillo">el suyo</span>?</h1>
+  <p class="sub">Pedidos, presupuestos, stock, turnos, tesorería… Si vive en un Excel, puede ser una aplicación.</p>
+  <p class="boton">Enlace en la biografía</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">iharlabs.com</span></div>
+</section>
+
+<!-- ============================ PUBLICACIÓN 3 · Cómo funciona ============================ -->
+<section class="s c portada" id="p3-1">
+  <p class="pill"><i></i>Cómo funciona</p>
+  <h1>De su archivo<br>a su app,<br>en <span class="brillo">4 pasos</span>.</h1>
+  <p class="sub">Con precio cerrado antes de empezar.</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="sigue">Deslice</span></div>
+</section>
+
+<section class="s c medio" id="p3-2">
+  <h2>Primero, hablamos</h2>
+  <div class="pasos">
+    <div class="paso"><i>1</i><div><b>Nos enseña su Excel</b><p>En una videollamada o por correo. Nos cuenta qué hace y qué le duele. Sin coste.</p></div></div>
+    <div class="paso"><i>2</i><div><b>Precio cerrado</b><p>Qué hará la aplicación, cuánto cuesta y cuándo estará. Por escrito.</p></div></div>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">2 / 5</span></div>
+</section>
+
+<section class="s c medio" id="p3-3">
+  <h2>Después, la hacemos</h2>
+  <div class="pasos">
+    <div class="paso"><i>3</i><div><b>Primera versión con sus datos</b><p>La prueba con sus números reales, no con una demo. La ajustamos con usted.</p></div></div>
+    <div class="paso"><i>4</i><div><b>Puesta en marcha</b><p>Importamos su histórico, creamos los usuarios y formamos a su equipo.</p></div></div>
+  </div>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">3 / 5</span></div>
+</section>
+
+<section class="s c medio" id="p3-4">
+  <h2>Siempre <span class="brillo">incluido</span></h2>
+  <ul class="lista" style="gap:44px; margin-top:16px">
+    <li>Puesta en marcha con usted</li>
+    <li>Una cuota por empresa, no por usuario</li>
+    <li>Servidor y copias en la Unión Europea</li>
+    <li>Sus datos son suyos: se descargan cuando quiera</li>
+    <li>Sigue exportando a Excel cuando lo necesite</li>
+  </ul>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">4 / 5</span></div>
+</section>
+
+<section class="s c cta" id="p3-5">
+  <h1>Empiece por<br>el <span class="brillo">paso 1</span>.</h1>
+  <p class="sub">Enséñenos su Excel. Sin coste y sin compromiso.</p>
+  <p class="boton">Enlace en la biografía</p>
+  <div class="pie"><span class="marca"><svg width="56" height="56"><use href="#logo"/></svg>Ihar Labs</span><span class="n">iharlabs.com</span></div>
+</section>
+
+</body>
+</html>
