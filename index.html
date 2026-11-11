@@ -329,7 +329,7 @@
       <h2>De su archivo a su aplicación, en cuatro pasos</h2>
     </div>
     <ol class="pasos">
-      <li data-revelar><span class="paso-n">1</span><b>Nos enseña su Excel</b><p>En una videollamada o por correo. Nos cuenta qué hace y qué le duele. Sin coste.</p></li>
+      <li data-revelar><span class="paso-n">1</span><b>Nos enseña su Excel</b><p>En una videollamada, compartiendo pantalla. Nos cuenta qué hace y qué le duele. Sin coste y sin enviarnos nada.</p></li>
       <li data-revelar><span class="paso-n">2</span><b>Precio cerrado</b><p>Le decimos qué tamaño es, qué hará la aplicación y cuándo estará. Por escrito, antes de empezar.</p></li>
       <li data-revelar><span class="paso-n">3</span><b>Primera versión con sus datos</b><p>La prueba con sus números reales, no con una demo. La ajustamos con usted.</p></li>
       <li data-revelar><span class="paso-n">4</span><b>Puesta en marcha</b><p>Importamos su histórico, creamos los usuarios y formamos a su equipo. El primer mes, a su lado.</p></li>
@@ -350,7 +350,7 @@
       <details><summary>¿Tengo que dejar de usar Excel?</summary><p>No. Su aplicación exporta a Excel cuando lo necesite: para su asesoría, para el banco o para hacer sus propias cuentas. Lo que deja de hacer es depender de un archivo.</p></details>
       <details><summary>¿Cobran por usuario?</summary><p>No. Se paga una cuota por empresa y dentro entran las personas que haga falta. Es la diferencia con casi todos los programas, que cobran por cada usuario y cada mes.</p></details>
       <details><summary>¿Cuánto tardan?</summary><p>Depende del tamaño y de la cola: hacemos pocas a la vez para hacerlas bien. El plazo se lo damos por escrito en la propuesta, antes de empezar.</p></details>
-      <details><summary>Mi Excel tiene datos delicados. ¿Cómo se lo enseño?</summary><p>No lo envíe por el formulario. Puede enseñarlo en una videollamada o mandarnos una copia con los datos cambiados. Antes de recibir datos reales firmamos un acuerdo de confidencialidad y de tratamiento de datos.</p></details>
+      <details><summary>¿Tengo que enviarles mi Excel? Tiene datos delicados.</summary><p>Para empezar, no. Nos lo enseña en una videollamada compartiendo pantalla, y con eso le damos el precio. Solo si sigue adelante nos pasa el archivo, y antes firmamos un acuerdo de confidencialidad y de tratamiento de datos. Si lo prefiere, puede mandarnos una copia con los datos cambiados.</p></details>
       <details><summary>¿Dónde quedan mis datos?</summary><p>En servidores de la Unión Europea, con copias de seguridad. Son suyos: puede descargarlos cuando quiera. A la inteligencia artificial solo se le envía lo necesario para cada tarea, y puede usar la aplicación sin ella.</p></details>
       <details><summary>¿Y si después quiero cambiar o añadir algo?</summary><p>La cuota mensual incluye servidor, copias, soporte y pequeños ajustes. Las funciones nuevas se presupuestan aparte, también con precio cerrado.</p></details>
       <details><summary>¿Puedo probar Flow antes de decidir?</summary><p>Sí. Le damos de alta con 30 días gratis, importamos su Excel de tesorería y le ayudamos a ponerla en marcha. Si no sigue, sus datos se borran.</p></details>
@@ -364,7 +364,13 @@
     <div class="contacto-txt" data-revelar>
       <p class="pill">Contacto</p>
       <h2>Enséñenos su <span class="celda">Excel</span></h2>
-      <p>Cuéntenos qué hace y qué le gustaría que hiciera. Le respondemos en un día laborable con el tamaño que le corresponde y los siguientes pasos.</p>
+      <p>Cuéntenos en dos líneas qué hace su Excel. No hace falta adjuntarlo: nos lo enseña después, cuando hayamos hablado.</p>
+      <ol class="despues">
+        <li><b>Nos escribe</b><span>Con este formulario. Solo texto, sin archivos.</span></li>
+        <li><b>Le respondemos</b><span>En un día laborable, para quedar en una videollamada de 30 minutos.</span></li>
+        <li><b>Nos enseña su Excel</b><span>Compartiendo pantalla. No nos queda ninguna copia.</span></li>
+        <li><b>Precio cerrado</b><span>Por escrito. Si seguimos adelante, firmamos la confidencialidad y entonces nos pasa el archivo.</span></li>
+      </ol>
       <p class="contacto-correo">O escríbanos a <a href="mailto:hola@iharlabs.com">hola@iharlabs.com</a></p>
     </div>
     <form class="form tarjeta" id="form-contacto" data-endpoint="https://api.web3forms.com/submit" data-clave="d937025f-797b-4668-9349-6230d847dc70" novalidate data-revelar>
@@ -386,7 +392,7 @@
         </select>
       </div>
       <div class="campo">
-        <label for="f-mensaje">Qué hace su Excel y qué le gustaría mejorar</label>
+        <label for="f-mensaje">Qué hace su Excel y qué le gustaría mejorar <span class="opc">(sin adjuntos: lo vemos después)</span></label>
         <textarea id="f-mensaje" name="mensaje" rows="4" required placeholder="Por ejemplo: llevamos los pedidos en un Excel con cinco hojas y cada semana alguien pisa los cambios de otro."></textarea>
       </div>
       <input type="checkbox" name="botcheck" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">

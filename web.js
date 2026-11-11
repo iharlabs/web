@@ -98,7 +98,7 @@
           body: JSON.stringify({ access_key: form.dataset.clave, subject: asunto, from_name: 'Web de Ihar Labs', replyto: datos.correo, ...datos }),
         });
         if (!r.ok) throw new Error(String(r.status));
-        form.reset(); decir('Recibido. Le respondemos en un día laborable.', 'ok');
+        form.reset(); decir('Recibido. Le escribimos en un día laborable para quedar en una videollamada y que nos enseñe su Excel.', 'ok');
       } catch {
         decir('No se ha podido enviar. Escríbanos a hola@iharlabs.com y le respondemos igual.', 'error');
       } finally { boton.disabled = false; }

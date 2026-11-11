@@ -273,6 +273,12 @@ a { color: var(--azul); text-decoration-thickness: 1px; text-underline-offset: 3
 .contacto-txt .pill { margin-bottom: 22px; }
 .contacto-txt p:not(.pill) { margin-top: 20px; font-size: 19px; line-height: 1.5; color: var(--texto-2); }
 .contacto-txt .contacto-correo { font-size: 16px; }
+.despues { list-style: none; margin: 28px 0 0; padding: 0; counter-reset: d; display: grid; gap: 0; }
+.despues li { counter-increment: d; position: relative; display: grid; gap: 4px; padding: 0 0 22px 52px; }
+.despues li::before { content: counter(d); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 10px; background: var(--grad); color: #04121a; font-weight: 600; font-size: 15px; }
+.despues li:not(:last-child)::after { content: ''; position: absolute; left: 15px; top: 38px; bottom: 6px; width: 2px; background: var(--borde-2); border-radius: 2px; }
+.despues b { color: #fff; font-size: 17px; font-weight: 600; }
+.despues span { color: var(--texto-2); font-size: 15.5px; line-height: 1.5; }
 .form { display: grid; gap: 18px; padding: 32px; }
 .fila2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .campo { display: grid; gap: 7px; }
