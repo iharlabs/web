@@ -1,5 +1,18 @@
 # Dirección de diseño · iharlabs.com
 
+> **Revisión del 11-11-2026: «De Excel a su propia aplicación».** Igor decidió centrar la empresa en una sola cosa
+> («el que mucho abarca poco aprieta») y pidió una web totalmente nueva y mucho más moderna. Manda esto:
+> - **Un solo mensaje:** pasar de Excel a una aplicación propia. Fuera la oferta de webs, las suscripciones y Motion.
+> - **Toda en oscuro** (`--fondo` #060913). El color cuenta la historia: **verde de hoja de cálculo → azul de app**
+>   (`--grad`). La palabra «Excel» del título va dentro de una celda seleccionada, con su tirador.
+> - **La portada convierte sola** un Excel en Flow, en bucle de 10 s (`@property --p` + clip-path + un haz de luz).
+>   Nada que arrastrar: la gente no sabía que había que hacerlo. Con movimiento reducido queda fija al 56 %.
+> - Cinta de «frases de oficina con Excel», bloque «− Excel / + aplicación», apps hechas con su archivo de origen
+>   (`.archivo` → `.flecha` → app), tres tamaños con precio cerrado (Hoja, Libro, Macro), tabla de alternativas
+>   con precios de mercado y calculadora de lo que cuesta el Excel al año.
+> - Sigue vigente de abajo: nada inventado, botones que dicen lo que pasa, contraste ≥ 4,5:1, precio «por empresa,
+>   no por usuario», pantallas reales con la empresa de ejemplo, sin plazos de entrega prometidos.
+
 > **Revisión del 8-11-2026 (tarde).** Igor vio la primera versión «anticuada» y pidió una web mucho más moderna.
 > Lo que manda es su gusto: portada oscura (`--noche`) con brillos azul y menta y una rejilla tenue, el
 > comparador flotando con sombra de color, **Geist** en vez de IBM Plex, tarjetas grandes (radio 22) con

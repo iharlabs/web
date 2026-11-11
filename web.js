@@ -1,4 +1,5 @@
-// Ihar Labs · web. Todo lo que se mueve lo mueve el visitante. Sin cookies ni rastreo.
+// Ihar Labs · web «De Excel a su propia aplicación». Sin cookies ni rastreo.
+// La conversión de la portada y la cinta son CSS; aquí van las pestañas, la calculadora, el formulario y las apariciones.
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -6,52 +7,11 @@
   // año del pie
   $$('[data-anyo]').forEach((e) => { e.textContent = String(new Date().getFullYear()); });
 
-  // las tarjetas aparecen una vez al llegar a ellas (sin movimiento si el visitante lo pide así)
+  // las piezas aparecen una vez al llegar a ellas (sin movimiento si el visitante lo pide así)
   const sinMovimiento = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const revelar = $$('[data-revelar]');
   if (sinMovimiento || !('IntersectionObserver' in window)) revelar.forEach((e) => e.classList.add('visto'));
   else { const obs = new IntersectionObserver((es) => es.forEach((x) => { if (x.isIntersecting) { x.target.classList.add('visto'); obs.unobserve(x.target); } }), { rootMargin: '0px 0px -6% 0px' }); revelar.forEach((e) => obs.observe(e)); }
-
-  // el antes y el después: el tirador sigue al control de rango (accesible con teclado)
-  $$('[data-comparar]').forEach((fig) => {
-    const marco = $('.comparar-marco', fig);
-    const rango = $('[data-comparar-rango]', fig);
-    const poner = () => marco.style.setProperty('--pos', `${rango.value}%`);
-    rango.addEventListener('input', poner);
-    // arrastrar o tocar en cualquier punto del marco también mueve el tirador
-    let arrastrando = false;
-    const desde = (x) => { const r = marco.getBoundingClientRect(); rango.value = String(Math.min(100, Math.max(0, ((x - r.left) / r.width) * 100))); poner(); };
-    marco.addEventListener('pointerdown', (e) => { if (e.target === rango) return; arrastrando = true; marco.setPointerCapture(e.pointerId); desde(e.clientX); });
-    marco.addEventListener('pointermove', (e) => { if (arrastrando) desde(e.clientX); });
-    marco.addEventListener('pointerup', () => { arrastrando = false; });
-    marco.addEventListener('pointercancel', () => { arrastrando = false; });
-    poner();
-    // al cargar, el tirador hace un barrido solo (así se entiende qué es) y deja una pista «Arrastre»
-    // hasta que el visitante lo toca; con movimiento reducido no se mueve nada
-    const pista = $('.comparar-pista', fig);
-    const quitarPista = () => { pista?.classList.add('fuera'); };
-    rango.addEventListener('input', quitarPista, { once: true });
-    marco.addEventListener('pointerdown', quitarPista, { once: true });
-    if (!sinMovimiento) {
-      const ruta = [[0, 46], [900, 8], [2300, 96], [3300, 58]]; // [ms, posición]
-      const t0 = performance.now() + 700;
-      let tocado = false;
-      const parar = () => { tocado = true; };
-      marco.addEventListener('pointerdown', parar, { once: true });
-      const suaviza = (t) => 1 - Math.pow(1 - t, 3);
-      const paso = (ahora) => {
-        if (tocado) return;
-        const t = ahora - t0;
-        if (t < 0) { requestAnimationFrame(paso); return; }
-        let i = 1; while (i < ruta.length && ruta[i][0] < t) i++;
-        if (i >= ruta.length) { rango.value = String(ruta[ruta.length - 1][1]); poner(); return; }
-        const [ta, pa] = ruta[i - 1], [tb, pb] = ruta[i];
-        rango.value = String(pa + (pb - pa) * suaviza((t - ta) / (tb - ta))); poner();
-        requestAnimationFrame(paso);
-      };
-      requestAnimationFrame(paso);
-    }
-  });
 
   // pestañas de pantallas: cambia la imagen al pulsar
   $$('.pestanas').forEach((grupo) => {
@@ -72,20 +32,22 @@
     });
   });
 
-  // calculadora de suscripciones
+  // calculadora: lo que cuesta el Excel al año (personas × horas a la semana × coste por hora × 46 semanas)
+  const SEMANAS = 46;
   // punto de miles siempre (es-ES no lo pone en 4 cifras) y coma decimal
-  const eur = (n) => { const [e, d] = n.toFixed(2).split('.'); return `${e.replace(/\B(?=(\d{3})+(?!\d))/g, '.')},${d} €`; };
+  const miles = (s) => s.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const eur = (n) => { const [e, d] = n.toFixed(2).split('.'); return `${miles(e)},${d} €`; };
   const calc = $('.calc');
   if (calc) {
     const v = (k) => Number($(`[data-i="${k}"]`, calc).value);
     const o = (k) => $(`[data-o="${k}"]`, calc);
     const pintar = () => {
-      const anual = v('personas') * v('herr') * v('precio') * 12;
+      const horas = v('personas') * v('horas') * SEMANAS;
       o('personas').textContent = String(v('personas'));
-      o('herr').textContent = String(v('herr'));
-      o('precio').textContent = `${v('precio')} €`;
-      o('anual').textContent = eur(anual);
-      o('cinco').textContent = eur(anual * 5);
+      o('horas').textContent = `${v('horas')} h`;
+      o('coste').textContent = `${v('coste')} €`;
+      o('horasAnyo').textContent = `${miles(String(horas))} h`;
+      o('anual').textContent = eur(horas * v('coste'));
     };
     calc.addEventListener('input', pintar); pintar();
   }
@@ -115,7 +77,7 @@
       const errores = [];
       if (!f.nombre.value.trim()) errores.push([f.nombre, 'Escriba su nombre.']);
       if (!f.correo.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.correo.value.trim())) errores.push([f.correo, 'Escriba un correo como nombre@empresa.com.']);
-      if (!f.mensaje.value.trim()) errores.push([f.mensaje, 'Cuéntenos en una o dos frases qué le gustaría mejorar.']);
+      if (!f.mensaje.value.trim()) errores.push([f.mensaje, 'Cuéntenos en una o dos frases qué hace su Excel.']);
       if (!f.privacidad.checked) errores.push([f.privacidad, 'Marque la casilla para que podamos responderle.']);
       if (errores.length) { errores.forEach(([c, t]) => marcar(c, t)); decir('Falta algo: revise lo marcado.', 'error'); errores[0][0].focus(); return; }
       if (f.botcheck.checked) return;

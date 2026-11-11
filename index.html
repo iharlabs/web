@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ihar Labs · Software hecho para su empresa</title>
-  <meta name="description" content="Convertimos la hoja de cálculo o la herramienta que paga hoy en una aplicación propia de su empresa, y la ponemos en marcha con usted. Flow, tesorería clara y al día, y aplicaciones a medida.">
-  <meta name="theme-color" content="#0b1230">
+  <title>Ihar Labs · De Excel a su propia aplicación</title>
+  <meta name="description" content="Convertimos la hoja de Excel que sostiene su empresa en una aplicación propia: con usuarios, móvil, historial y sus mismos números. Precio cerrado desde 1.490 € y puesta en marcha con usted.">
+  <meta name="theme-color" content="#060913">
   <link rel="icon" href="img/marca.svg" type="image/svg+xml">
   <link rel="preload" href="fuentes/geist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="img/flow/inicio.webp" as="image">
-  <meta property="og:title" content="Ihar Labs · Software hecho para su empresa">
-  <meta property="og:description" content="De su Excel o de la herramienta que paga hoy a una aplicación propia, puesta en marcha con usted.">
+  <meta property="og:title" content="Ihar Labs · De Excel a su propia aplicación">
+  <meta property="og:description" content="Su hoja de Excel, convertida en una aplicación de verdad. Precio cerrado y puesta en marcha con usted.">
   <meta property="og:image" content="https://iharlabs.com/img/flow/inicio.webp">
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="estilos.css">
@@ -18,18 +18,17 @@
 <body>
 <a class="saltar" href="#principal">Ir al contenido</a>
 
-<header class="cab" id="arriba">
-  <div class="cont cab-in">
+<header class="barra" id="arriba">
+  <div class="cont barra-in">
     <a class="logo" href="#arriba" aria-label="Ihar Labs, inicio"><img src="img/marca.svg" alt="" width="32" height="32"><span>Ihar Labs</span></a>
     <nav class="menu" aria-label="Secciones">
-      <a href="#que-hacemos">Qué hacemos</a>
-      <a href="#productos">Productos</a>
-      <a href="#a-medida">A medida</a>
-      <a href="#web">Web por 190 €</a>
-      <a href="#como">Cómo trabajamos</a>
+      <a href="#apps">Apps hechas</a>
+      <a href="#precios">Precios</a>
+      <a href="#comparativa">Alternativas</a>
+      <a href="#como">Cómo funciona</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
-    <a class="btn btn-prim btn-peq" href="#contacto">Pedir una conversación</a>
+    <a class="btn btn-prim btn-peq" href="#contacto">Convertir mi Excel</a>
   </div>
 </header>
 
@@ -39,20 +38,29 @@
 <section class="portada">
   <div class="cont">
     <div class="portada-txt" data-entrada>
-      <p class="pill pill-oscura"><span class="pill-punto"></span>Productos propios y aplicaciones a medida</p>
-      <h1>Software hecho <span class="brillo">para su empresa</span>, no al revés.</h1>
-      <p class="entrada">Partimos de la hoja de cálculo o de la herramienta que paga hoy y le hacemos la suya: con sus datos, su forma de trabajar y nadie más que usted dentro. Y la ponemos en marcha con usted.</p>
+      <p class="pill"><span class="pill-punto"></span>Para empresas que viven en Excel</p>
+      <h1>De <span class="celda">Excel</span> a su <span class="brillo">propia aplicación</span>.</h1>
+      <p class="entrada">Convertimos la hoja de cálculo que sostiene su empresa en una aplicación de verdad: con usuarios, móvil, historial y sus mismos números. Con precio cerrado y puesta en marcha con usted.</p>
       <div class="acciones">
-        <a class="btn btn-prim btn-grande" href="#contacto">Pedir una conversación</a>
-        <a class="btn btn-cristal btn-grande" href="#productos">Ver Flow, la app de tesorería</a>
+        <a class="btn btn-prim btn-grande" href="#contacto">Convertir mi Excel</a>
+        <a class="btn btn-sec btn-grande" href="#apps">Ver las apps ya hechas</a>
       </div>
+      <ul class="sellos">
+        <li>Precio cerrado antes de empezar</li>
+        <li>Una cuota por empresa, no por usuario</li>
+        <li>Datos en la Unión Europea</li>
+      </ul>
     </div>
 
-    <!-- el antes y el después: una hoja de cálculo recreada y la misma empresa en Flow -->
-    <figure class="comparar" data-comparar data-entrada>
-      <div class="comparar-cab" aria-hidden="true"><span class="pill">Antes: la hoja de cálculo</span><span class="pill pill-azul">Después: Flow</span></div>
-      <div class="comparar-marco" style="--pos: 46%">
-        <div class="comparar-antes" aria-hidden="true">
+    <!-- la conversión, en bucle: la hoja de cálculo se convierte sola en la aplicación -->
+    <figure class="escena" data-entrada>
+      <div class="escena-cab" aria-hidden="true">
+        <span class="archivo"><i class="ico-hoja"></i>CASH FLOW v42 definitivo FINAL.xlsm</span>
+        <span class="escena-via"><b></b></span>
+        <span class="archivo archivo-app"><img src="img/flow/icono-flow.png" alt="" width="20" height="20">flow.iharlabs.com</span>
+      </div>
+      <div class="escena-marco">
+        <div class="escena-excel" aria-hidden="true">
           <div class="hoja">
             <div class="hoja-barra"><span class="hoja-celda">D14</span><span class="hoja-fx">=SI(D12-D13&lt;&gt;0;"NO CUADRA";"ok")</span></div>
             <table class="hoja-tabla">
@@ -79,294 +87,259 @@
             <div class="hoja-pestanas"><span class="on">Santander</span><span>BBVA</span><span>Caixa</span><span>Resumen (no tocar)</span><span>Hoja3</span></div>
           </div>
         </div>
-        <div class="comparar-despues">
-          <img src="img/flow/inicio.webp" alt="El inicio de Flow con la misma empresa: posición de tesorería, cash flow del año, bancos cuadrados y evolución por decenas" width="1680" height="1050">
+        <div class="escena-app">
+          <img src="img/flow/inicio.webp" alt="La misma tesorería convertida en aplicación: posición, cash flow del año, bancos cuadrados y evolución" width="1680" height="1050">
         </div>
-        <div class="comparar-linea" aria-hidden="true"><span class="comparar-tirador"><span class="comparar-pista">Arrastre</span></span></div>
-        <label class="comparar-control"><span class="oculto">Arrastre para comparar la hoja de cálculo con Flow</span>
-          <input type="range" min="0" max="100" value="46" step="0.5" data-comparar-rango>
-        </label>
+        <div class="escena-haz" aria-hidden="true"></div>
       </div>
-      <figcaption>Arrastre el tirador. La misma empresa, los mismos números: a la izquierda la hoja de tesorería, a la derecha Flow. Empresa y cifras de ejemplo.</figcaption>
+      <figcaption>La misma empresa y los mismos números, antes y después. Empresa y cifras de ejemplo.</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- franja de confianza -->
-<div class="franja">
-  <div class="cont franja-in">
-    <span>Datos en servidores de la Unión Europea</span>
-    <span>Puesta en marcha con usted, incluida</span>
-    <span>30 días de prueba en Flow</span>
-    <span>Habla con quien lo programa</span>
+<!-- lo que se oye en una oficina con Excel -->
+<div class="cinta" aria-hidden="true">
+  <div class="cinta-in">
+    <span>#¡REF!</span><span>Copia de Copia de PRESUPUESTO (2).xlsx</span><span>¿Quién ha tocado la fórmula?</span><span>v42_definitivo_FINAL.xlsm</span><span>#¡VALOR!</span><span>«No abrir sin avisar a Marta»</span><span>El archivo está bloqueado por otro usuario</span><span>#¡DIV/0!</span><span>«Te lo reenvío, que el mío es el bueno»</span><span>Resumen (no tocar)</span>
+    <span>#¡REF!</span><span>Copia de Copia de PRESUPUESTO (2).xlsx</span><span>¿Quién ha tocado la fórmula?</span><span>v42_definitivo_FINAL.xlsm</span><span>#¡VALOR!</span><span>«No abrir sin avisar a Marta»</span><span>El archivo está bloqueado por otro usuario</span><span>#¡DIV/0!</span><span>«Te lo reenvío, que el mío es el bueno»</span><span>Resumen (no tocar)</span>
   </div>
 </div>
 
-<!-- ======================= qué hacemos ======================= -->
-<section class="secc" id="que-hacemos">
+<!-- ======================= excel frente a app ======================= -->
+<section class="secc" id="diferencia">
   <div class="cont">
     <div class="secc-cab" data-revelar>
-      <p class="pill">Qué hacemos</p>
-      <h2>Tres situaciones que resolvemos</h2>
-      <p>Casi todas las empresas con las que hablamos están en una de estas tres. A veces en las tres.</p>
+      <p class="pill">Qué cambia</p>
+      <h2>Lo que su Excel no puede hacer. Y su aplicación, sí.</h2>
+      <p>Excel es una maravilla para empezar. El problema llega cuando la empresa entera depende de un archivo.</p>
     </div>
-    <div class="bento">
-      <article class="tarjeta" data-revelar>
-        <div class="tarjeta-vis vis-excel" aria-hidden="true">
-          <div class="mini-hoja">
-            <span>CONCEPTO</span><span>ene</span><span>feb</span>
-            <span>Cobros</span><span>24.812</span><span>26.330</span>
-            <span>Nóminas</span><span>-33.072</span><span class="err">#¡REF!</span>
-            <span>Saldo</span><span>428.611</span><span class="err">#¡VALOR!</span>
-          </div>
-          <div class="mini-captura"><img src="img/flow/posicion.webp" alt="" width="1680" height="1050" loading="lazy"></div>
-          <span class="mini-sello">Cuadrado con el banco</span>
-        </div>
-        <h3>Tiene un Excel que ya no da más de sí</h3>
-        <p>Lo entiende una persona, se rompe cuando alguien toca una fórmula y vive en un correo. Lo convertimos en una aplicación: los mismos cálculos, con usuarios, permisos, historial y acceso desde el móvil.</p>
-        <p class="asi">Así nació Flow: de una plantilla de tesorería con cuarenta versiones.</p>
-      </article>
-      <article class="tarjeta" data-revelar>
-        <div class="tarjeta-vis vis-subs" aria-hidden="true">
-          <div class="mini-subs">
-            <div class="mini-sub"><span>Gestor de tareas</span><em>12 €/usuario</em></div>
-            <div class="mini-sub"><span>Documentación</span><em>10 €/usuario</em></div>
-            <div class="mini-sub"><span>CRM</span><em>25 €/usuario</em></div>
-          </div>
-          <div class="mini-propia"><span>Su herramienta</span><b>1 cuota</b><small>por empresa, entren 3 o 30 personas</small></div>
-        </div>
-        <h3>Paga suscripciones que usa a medias</h3>
-        <p>Herramientas genéricas que se pagan por cada persona y cada mes, y de las que usa una parte. Le hacemos la suya, con lo que necesita y nada más, y paga una cuota por empresa, no por cada usuario que entra.</p>
-        <p class="asi">Así sustituimos el gestor de tareas de una consultora: unos 2.000 € al año que ya no se van.</p>
-      </article>
-      <article class="tarjeta" data-revelar>
-        <div class="tarjeta-vis vis-tareas" aria-hidden="true">
-          <div class="mini-movil"><img src="img/flow/movil-inicio.webp" alt="" width="640" height="1385" loading="lazy"></div>
-          <div class="mini-hechas">
-            <div class="mini-tarea hecha"><i></i><span>Extracto clasificado</span><em>20/20</em></div>
-            <div class="mini-tarea hecha"><i></i><span>Factura leída</span><em>1.745 €</em></div>
-            <div class="mini-tarea hecha"><i></i><span>Vencimientos avisados</span><em>3</em></div>
-            <div class="mini-tarea"><i></i><span>Revisar 1 movimiento</span><em>usted</em></div>
-          </div>
-        </div>
-        <h3>Pierde horas en tareas que podrían hacerse solas</h3>
-        <p>Pasar el extracto, leer facturas, preparar el informe del mes, avisar de lo que vence. Pasa a hacerse solo, con inteligencia artificial solo donde de verdad ahorra tiempo: leer un PDF, clasificar un movimiento, proponer un cuadrante.</p>
-        <p class="asi">En Flow, un extracto de veinte movimientos se clasifica en segundos y la persona solo revisa.</p>
-      </article>
+    <div class="dif" data-revelar>
+      <div class="dif-cab"><span><i class="ico-hoja"></i>Con su Excel</span><span><i class="ico-app"></i>Con su aplicación</span></div>
+      <div class="dif-fila"><p class="menos">Vive en un archivo que va y viene por correo.</p><p class="mas">Un enlace. Cada persona entra con su usuario y ve lo que le toca.</p></div>
+      <div class="dif-fila"><p class="menos">Una fórmula tocada sin querer lo descuadra todo.</p><p class="mas">Los cálculos están protegidos y probados. Nadie los rompe.</p></div>
+      <div class="dif-fila"><p class="menos">Solo se usa bien en un ordenador.</p><p class="mas">Funciona en el móvil, instalada como una app más.</p></div>
+      <div class="dif-fila"><p class="menos">Nadie sabe quién cambió qué, ni cuándo.</p><p class="mas">Historial de cambios con nombre y fecha, y deshacer.</p></div>
+      <div class="dif-fila"><p class="menos">Copiar y pegar del banco, de las facturas, de otro Excel.</p><p class="mas">Importa extractos y lee facturas sola. Usted solo revisa.</p></div>
+      <div class="dif-fila"><p class="menos">«v42 definitivo FINAL (2).xlsx»</p><p class="mas">Una sola versión, siempre al día, con copias de seguridad.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ======================= productos ======================= -->
-<section class="secc secc-gris" id="productos">
+<!-- ======================= apps hechas ======================= -->
+<section class="secc" id="apps">
   <div class="cont">
     <div class="secc-cab" data-revelar>
-      <p class="pill">Productos</p>
-      <h2>Listos para usar. Puestos en marcha con usted.</h2>
-      <p>Hechos una vez y probados en empresas reales. Se contratan por meses: una reunión, sus datos dentro, y le acompañamos el primer mes.</p>
+      <p class="pill">Apps hechas</p>
+      <h2>Dos Excel que ya son aplicaciones</h2>
+      <p>No es teoría. Las dos nacieron de una hoja de cálculo y hoy se usan cada día. Puede contratarlas tal cual o pedirnos la suya.</p>
     </div>
 
-    <article class="producto" data-revelar>
-      <div class="producto-txt">
-        <div class="producto-marca"><img src="img/flow/icono-flow.png" alt="" width="44" height="44"><div><b>Flow</b><span>Tesorería por decenas</span></div></div>
-        <h3>La tesorería de su empresa, clara y al día</h3>
-        <p>Lo que entra y lo que sale de cada banco, diez días a diez días. Lo que falta por cobrar y por pagar. Cuánto dinero tendrá dentro de un mes. Sustituye a la hoja de cash flow y a la mañana del lunes cuadrando bancos.</p>
+    <article class="app" data-revelar>
+      <div class="app-txt">
+        <div class="origen"><span class="archivo"><i class="ico-hoja"></i>CASH FLOW.xlsm</span><i class="flecha"></i><span class="archivo archivo-app"><img src="img/flow/icono-flow.png" alt="" width="20" height="20">Flow</span></div>
+        <p class="estado ok">Disponible</p>
+        <h3>Flow: la tesorería de su empresa, clara y al día</h3>
+        <p>Era una plantilla de cash flow por decenas, con cuarenta versiones. Hoy es una aplicación: lo que entra y sale de cada banco, lo que falta por cobrar y pagar, y cuánto dinero tendrá dentro de un mes.</p>
         <ul class="lista">
-          <li>Sube el extracto y los movimientos se clasifican solos. Flow aprende de cada corrección.</li>
-          <li>Una foto o un PDF de una factura y ya está en la previsión, con su vencimiento.</li>
-          <li>Cada decena se cuadra con el saldo del banco. Si algo no coincide, lo señala.</li>
+          <li>Sube el extracto del banco y se clasifica solo. Aprende de cada corrección.</li>
+          <li>Una foto de una factura y ya está en la previsión, con su vencimiento.</li>
+          <li>Cada decena se cuadra con el banco. Si algo no coincide, lo señala.</li>
           <li>Posición de tesorería, comparativa y gráficas. También en el móvil.</li>
-          <li>Una cuota por empresa: entren las personas que haga falta, sin pagar por usuario.</li>
         </ul>
-        <div class="precio">
-          <!-- PRECIOS PROPUESTOS, pendientes de confirmar con Igor -->
-          <div><b>69 €</b><span>al mes por empresa, más IVA</span></div>
-          <div><b>300 €</b><span>puesta en marcha: importamos su Excel y lo dejamos cuadrado</span></div>
-          <div><b>30 días</b><span>de prueba gratis, sin tarjeta</span></div>
+        <!-- PRECIOS PROPUESTOS el 11-11-2026 tras mirar la competencia; los confirma Igor -->
+        <div class="tarifa">
+          <div class="tarifa-precio"><b>59 €</b><span>al mes por empresa</span></div>
+          <ul>
+            <li>Puesta en marcha con nosotros: 290 €, con su Excel importado</li>
+            <li>30 días de prueba, sin tarjeta</li>
+            <li>Sin permanencia y sin pagar por usuario</li>
+          </ul>
         </div>
         <div class="acciones">
-          <a class="btn btn-prim" href="#contacto" data-interes="Flow">Probar Flow 30 días</a>
-          <a class="btn btn-cristal" href="https://flow.iharlabs.com" rel="noopener">Entrar en Flow</a>
+          <a class="btn btn-prim" href="#contacto" data-interes="Flow (tesorería)">Probar Flow 30 días</a>
+          <a class="btn btn-sec" href="https://flow.iharlabs.com" rel="noopener">Entrar en Flow</a>
         </div>
       </div>
-      <div class="producto-vis">
+      <div class="app-vis">
         <div class="pestanas" role="tablist" aria-label="Pantallas de Flow">
           <button type="button" role="tab" aria-selected="true" data-img="img/flow/inicio.webp" data-alt="Inicio de Flow: posición de tesorería, cash flow del año y evolución por decenas">Inicio</button>
-          <button type="button" role="tab" aria-selected="false" data-img="img/flow/graficas.webp" data-alt="Gráficas de Flow: posición de tesorería, en qué se va el dinero, cash flow por mes y entradas y salidas">Gráficas</button>
-          <button type="button" role="tab" aria-selected="false" data-img="img/flow/posicion.webp" data-alt="Posición de tesorería por decenas, con cada decena cuadrada con el banco">Posición de tesorería</button>
-          <button type="button" role="tab" aria-selected="false" data-img="img/flow/comparativa.webp" data-alt="Comparativa de un año con el anterior: cash flow generado, qué ha cambiado más y mes a mes">Comparativa</button>
+          <button type="button" role="tab" aria-selected="false" data-img="img/flow/graficas.webp" data-alt="Gráficas de Flow: posición de tesorería, en qué se va el dinero, cash flow por mes">Gráficas</button>
+          <button type="button" role="tab" aria-selected="false" data-img="img/flow/posicion.webp" data-alt="Posición de tesorería por decenas, con cada decena cuadrada con el banco">Posición</button>
+          <button type="button" role="tab" aria-selected="false" data-img="img/flow/comparativa.webp" data-alt="Comparativa de un año con el anterior">Comparativa</button>
         </div>
         <div class="marco">
           <img class="pant" src="img/flow/inicio.webp" alt="Inicio de Flow: posición de tesorería, cash flow del año y evolución por decenas" width="1680" height="1050" loading="lazy">
         </div>
-        <div class="tel"><img src="img/flow/movil-inicio.webp" alt="Flow en el móvil: tesorería, bancos y avisos" width="640" height="1385" loading="lazy"></div>
+        <div class="tel"><img src="img/flow/movil-inicio.webp" alt="Flow en el móvil" width="640" height="1385" loading="lazy"></div>
         <p class="nota">Empresa y cifras de ejemplo.</p>
       </div>
     </article>
 
-    <div class="proximos">
-      <article class="tarjeta tarjeta-prox" data-revelar>
-        <span class="pill">En preparación</span>
-        <h3>Turnos</h3>
-        <p>Cuadrantes, vacaciones, horas y convenio para equipos de 3 a 50 personas. Nace del Gestor de turnos que usan farmacias a diario.</p>
-        <a class="enlace" href="#contacto" data-interes="Turnos">Avíseme cuando esté</a>
-      </article>
-      <article class="tarjeta tarjeta-prox" data-revelar>
-        <span class="pill">En preparación</span>
-        <h3>Fichaje</h3>
-        <p>Registro de jornada desde el móvil o una tableta en la entrada, con lo que exige la ley y sin que nadie tenga que pelearse con él.</p>
-        <a class="enlace" href="#contacto" data-interes="Fichaje">Avíseme cuando esté</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= a medida ======================= -->
-<section class="secc" id="a-medida">
-  <div class="cont">
-    <div class="secc-cab" data-revelar>
-      <p class="pill">A medida</p>
-      <h2>Cuando su problema no está en la lista</h2>
-      <p>Partimos de lo que ya tiene y hacemos solo lo que hace falta. Con propuesta cerrada antes de empezar.</p>
-    </div>
-
-    <div class="medida">
-      <div class="tarjeta tarjeta-incluye" data-revelar>
-        <h3>Qué incluye</h3>
+    <article class="app app-inv" data-revelar>
+      <div class="app-txt">
+        <div class="origen"><span class="archivo"><i class="ico-hoja"></i>CALENDARIO LABORAL.xlsm</span><i class="flecha"></i><span class="archivo archivo-app"><i class="ico-app"></i>Turnos</span></div>
+        <p class="estado espera">En uso en farmacias · para otras empresas, lista de espera</p>
+        <h3>Turnos y fichaje: el cuadrante de todo el equipo</h3>
+        <p>Era una plantilla de calendario laboral. Hoy es la aplicación con la que farmacias clientes de SB Farmaconsultores planifican turnos, vacaciones y guardias, y registran la jornada.</p>
         <ul class="lista">
-          <li>Una primera conversación sin coste para entender su Excel o su proceso.</li>
-          <li>Una propuesta cerrada por escrito: qué hará, cuánto cuesta y cuándo estará.</li>
-          <li>Una primera versión en semanas, que prueba con sus datos reales y ajustamos con usted.</li>
-          <li>Puesta en marcha, formación a su equipo y mantenimiento: servidor, copias, soporte y mejoras.</li>
+          <li>Cuadrante mensual con horas, convenio y cobertura por franjas.</li>
+          <li>Fichaje desde el móvil o una tableta en la entrada, comparado con el turno.</li>
+          <li>Vacaciones y cambios de turno pedidos desde el móvil.</li>
+          <li>Un asistente propone cómo cubrir una baja respetando el convenio.</li>
         </ul>
-        <div class="precio">
-          <!-- PRECIOS PROPUESTOS, pendientes de confirmar con Igor -->
-          <div><b>desde 3.000 €</b><span>el proyecto, con propuesta cerrada antes de empezar</span></div>
-          <div><b>desde 90 €</b><span>al mes de mantenimiento: servidor en Europa, copias, soporte y mejoras</span></div>
+        <div class="tarifa">
+          <div class="tarifa-precio"><b>49 €</b><span>al mes por empresa · precio previsto</span></div>
+          <ul>
+            <li>Hasta 50 personas, sin pagar por empleado</li>
+            <li>Puesta en marcha con nosotros: 190 €</li>
+            <li>Le avisamos cuando abramos plazas</li>
+          </ul>
         </div>
-        <a class="btn btn-prim" href="#contacto" data-interes="Pasar un Excel a aplicación">Contar mi caso</a>
-      </div>
-
-      <div class="casos">
-        <article class="caso" data-revelar>
-          <div class="caso-vis">
-            <video controls preload="none" playsinline poster="img/turnos/portada-video.webp" width="1920" height="1080">
-              <source src="video/gestor-turnos.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="caso-txt">
-            <span class="pill">Caso</span>
-            <h3>Gestor de turnos, para SB Farmaconsultores</h3>
-            <p>Una plantilla de Excel de calendario laboral, convertida en la aplicación con la que las farmacias clientes de la consultora planifican turnos, vacaciones y guardias. Cada empleado ve su calendario en el móvil; un asistente propone cómo cubrir una baja respetando el convenio.</p>
-          </div>
-        </article>
-        <article class="caso caso-oscuro" data-revelar>
-          <div class="caso-txt">
-            <span class="pill pill-oscura">Caso</span>
-            <h3>Motion, el gestor de tareas de una consultora</h3>
-            <p>El equipo pagaba una herramienta de tareas y documentación por persona y mes, y usaba una parte. Hicimos la suya: tareas, clientes, calendario y correo en un solo sitio, con los datos en su propio servidor.</p>
-          </div>
-          <div class="caso-cifra">
-            <b>2.000 €</b>
-            <span>al año que ya no se pagan en suscripciones</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= oferta: su web ======================= -->
-<section class="secc secc-oferta" id="web">
-  <div class="cont">
-    <article class="oferta" data-revelar>
-      <div class="oferta-txt">
-        <p class="pill pill-oscura"><span class="pill-punto"></span>Plazas limitadas · <span data-plazas>10 abiertas</span></p>
-        <h2>Su web profesional por <span class="brillo">190 €</span></h2>
-        <p class="oferta-lead">Una web que se vea bien en el móvil y en el ordenador, con su dominio y su alojamiento del primer año incluidos. La hacemos nosotros, con el mismo cuidado que ve en esta página, para que compruebe cómo trabajamos antes de encargarnos algo mayor.</p>
-        <ul class="lista">
-          <li>Una página con hasta cinco apartados: quiénes son, qué hacen, fotos, contacto y textos legales.</li>
-          <li>Dominio .com o .es y alojamiento del primer año, a su nombre.</li>
-          <li>Formulario de contacto que le llega al correo. Sin cookies ni rastreo.</li>
-          <li>Usted nos pasa textos y fotos en un formulario sencillo; una ronda de cambios incluida.</li>
-        </ul>
-        <p class="oferta-nota">Abrimos las plazas por tandas, porque cada web la hacemos a mano: cuando se llenan, abrimos más. Al reservar le decimos el plazo de entrega según la cola. Cambios posteriores y mantenimiento, aparte: desde 30 € al mes o por horas.</p>
         <div class="acciones">
-          <a class="btn btn-prim btn-grande" href="#contacto" data-interes="Web a 190 €">Reservar mi plaza</a>
+          <a class="btn btn-prim" href="#contacto" data-interes="Turnos y fichaje">Apuntarme a la lista</a>
         </div>
       </div>
-      <div class="oferta-vis" aria-hidden="true">
-        <div class="oferta-nav"><i></i><i></i><i></i><span>su-empresa.com</span></div>
-        <div class="oferta-pag">
-          <div class="op-cab"><b></b><span></span><span></span><span></span></div>
-          <div class="op-hero"><em></em><em class="corta"></em><u></u></div>
-          <div class="op-grid"><s></s><s></s><s></s></div>
-          <div class="op-pie"></div>
+      <div class="app-vis">
+        <div class="marco marco-video">
+          <video controls preload="none" playsinline poster="img/turnos/portada-video.webp" width="1920" height="1080">
+            <source src="video/gestor-turnos.mp4" type="video/mp4">
+          </video>
         </div>
-        <div class="oferta-movil">
-          <div class="op-cab"><b></b></div>
-          <div class="op-hero"><em></em><em class="corta"></em><u></u></div>
-          <div class="op-grid"><s></s><s></s></div>
+        <div class="app-mini">
+          <img src="img/turnos/calendario.webp" alt="Cuadrante mensual del equipo, con turnos y horas" width="1680" height="945" loading="lazy">
+          <img src="img/turnos/asistente.webp" alt="El asistente propone cómo cubrir una baja" width="1680" height="945" loading="lazy">
         </div>
-        <div class="oferta-sello">Hecha por Ihar Labs</div>
       </div>
     </article>
   </div>
 </section>
 
+<!-- ======================= precios a medida ======================= -->
+<section class="secc" id="precios">
+  <div class="cont">
+    <div class="secc-cab centro" data-revelar>
+      <p class="pill">Precios</p>
+      <h2>Y ahora, el suyo. Con precio cerrado.</h2>
+      <p>Tres tamaños, según lo que hace su Excel. Sabe lo que va a pagar antes de empezar.</p>
+    </div>
+    <!-- PRECIOS PROPUESTOS el 11-11-2026; los confirma Igor -->
+    <div class="packs">
+      <article class="pack" data-revelar>
+        <h3>Hoja</h3>
+        <p class="pack-para">Un Excel de una hoja: un registro, un listado, un control.</p>
+        <p class="pack-precio"><b>1.490 €</b><span>y 49 € al mes</span></p>
+        <ul class="lista">
+          <li>Hasta tres pantallas</li>
+          <li>Sus datos actuales, importados</li>
+          <li>Usuarios y permisos</li>
+          <li>Funciona en el móvil</li>
+        </ul>
+        <a class="btn btn-sec" href="#contacto" data-interes="Convertir mi Excel en aplicación">Empezar con Hoja</a>
+      </article>
+      <article class="pack pack-top" data-revelar>
+        <p class="pack-sello">El más habitual</p>
+        <h3>Libro</h3>
+        <p class="pack-para">Un Excel con varias hojas que se hablan entre sí.</p>
+        <p class="pack-precio"><b>3.900 €</b><span>y 99 € al mes</span></p>
+        <ul class="lista">
+          <li>Todo lo de Hoja</li>
+          <li>Sus fórmulas y cálculos entre hojas</li>
+          <li>Informes y gráficas</li>
+          <li>Exporta a Excel y a PDF</li>
+          <li>Historial de cambios</li>
+        </ul>
+        <a class="btn btn-prim" href="#contacto" data-interes="Convertir mi Excel en aplicación">Empezar con Libro</a>
+      </article>
+      <article class="pack" data-revelar>
+        <h3>Macro</h3>
+        <p class="pack-para">Un Excel con macros, o que quiere ir más allá.</p>
+        <p class="pack-precio"><b>desde 7.900 €</b><span>y desde 149 € al mes</span></p>
+        <ul class="lista">
+          <li>Todo lo de Libro</li>
+          <li>Lee facturas, PDF y extractos con IA</li>
+          <li>Se conecta con sus otros programas</li>
+          <li>Varias empresas o sedes</li>
+        </ul>
+        <a class="btn btn-sec" href="#contacto" data-interes="Convertir mi Excel en aplicación">Empezar con Macro</a>
+      </article>
+    </div>
+    <ul class="siempre" data-revelar>
+      <li>Puesta en marcha con usted</li>
+      <li>Una cuota por empresa, entren 3 o 30 personas</li>
+      <li>Servidor y copias en la Unión Europea</li>
+      <li>Sus datos se descargan cuando quiera</li>
+    </ul>
+    <p class="pie-nota" data-revelar>Precios sin IVA. La cuota mensual incluye servidor, copias de seguridad, soporte y pequeños ajustes. ¿No sabe cuál es el suyo? <a href="#contacto">Enséñenos su Excel</a> y se lo decimos.</p>
+  </div>
+</section>
+
+<!-- ======================= alternativas ======================= -->
+<section class="secc" id="comparativa">
+  <div class="cont">
+    <div class="secc-cab" data-revelar>
+      <p class="pill">Alternativas</p>
+      <h2>Las otras maneras de salir de Excel</h2>
+      <p>Las hemos mirado todas. Esto es lo que cuestan y lo que no cuentan.</p>
+    </div>
+    <div class="tabla" role="table" aria-label="Comparativa de alternativas" data-revelar>
+      <div class="tabla-fila tabla-cab" role="row"><span role="columnheader">Opción</span><span role="columnheader">Cuánto cuesta</span><span role="columnheader">Quién lo hace</span><span role="columnheader">La pega</span></div>
+      <div class="tabla-fila" role="row"><b role="cell">Seguir con Excel</b><span role="cell" data-t="Cuánto cuesta">Nada, salvo las horas que se pierden</span><span role="cell" data-t="Quién lo hace">Usted</span><span role="cell" data-t="La pega">Errores, versiones y una sola persona que lo entiende</span></div>
+      <div class="tabla-fila" role="row"><b role="cell">Herramientas para hacérselo usted</b><span role="cell" data-t="Cuánto cuesta">De 5 a 20 $ por usuario y mes, o planes de 50 a 300 $ al mes</span><span role="cell" data-t="Quién lo hace">Usted, en sus ratos libres</span><span role="cell" data-t="La pega">Hay que aprenderlas, se paga por usuario y tienen límites</span></div>
+      <div class="tabla-fila" role="row"><b role="cell">Un programa genérico</b><span role="cell" data-t="Cuánto cuesta">De 4 a 8 € por empleado y mes, o de 59 a 119 € al mes</span><span role="cell" data-t="Quién lo hace">Ya está hecho</span><span role="cell" data-t="La pega">Se adapta usted al programa, no el programa a usted</span></div>
+      <div class="tabla-fila" role="row"><b role="cell">Una agencia de software</b><span role="cell" data-t="Cuánto cuesta">Desde 5.000 €, y de 200 a 800 € al mes de mantenimiento</span><span role="cell" data-t="Quién lo hace">Un equipo, en meses</span><span role="cell" data-t="La pega">Presupuestos abiertos y plazos largos</span></div>
+      <div class="tabla-fila tabla-nos" role="row"><b role="cell">Ihar Labs</b><span role="cell" data-t="Cuánto cuesta">Desde 1.490 € y 49 € al mes, con precio cerrado</span><span role="cell" data-t="Quién lo hace">Nosotros, con usted</span><span role="cell" data-t="La pega">Hacemos pocas a la vez: hay lista de espera</span></div>
+    </div>
+    <p class="pie-nota" data-revelar>Precios públicos orientativos de cada tipo de alternativa, consultados en noviembre de 2026. Pueden variar.</p>
+  </div>
+</section>
+
 <!-- ======================= calculadora ======================= -->
-<section class="secc secc-gris" id="ahorro">
+<section class="secc" id="coste">
   <div class="cont calc-secc">
     <div class="secc-cab" data-revelar>
       <p class="pill">Calculadora</p>
-      <h2>¿Cuánto paga al año por herramientas que usa a medias?</h2>
-      <p>Una cuenta orientativa. En la conversación la hacemos de verdad, herramienta por herramienta, y le decimos cuáles compensa sustituir y cuáles no.</p>
+      <h2>¿Cuánto le cuesta su Excel cada año?</h2>
+      <p>El Excel parece gratis. Lo que cuesta son las horas de copiar, pegar, cuadrar y arreglar. Haga la cuenta con sus números.</p>
     </div>
-    <form class="calc tarjeta" aria-label="Calculadora de suscripciones" onsubmit="return false" data-revelar>
+    <form class="calc tarjeta" aria-label="Calculadora del coste de su Excel" onsubmit="return false" data-revelar>
       <div class="calc-campo">
-        <label for="c-personas">Personas que las usan</label>
-        <output for="c-personas" data-o="personas">10</output>
-        <input id="c-personas" type="range" min="1" max="100" value="10" data-i="personas">
+        <label for="c-personas">Personas que trabajan con él</label>
+        <output for="c-personas" data-o="personas">3</output>
+        <input id="c-personas" type="range" min="1" max="20" value="3" data-i="personas">
       </div>
       <div class="calc-campo">
-        <label for="c-herr">Herramientas de pago</label>
-        <output for="c-herr" data-o="herr">3</output>
-        <input id="c-herr" type="range" min="1" max="10" value="3" data-i="herr">
+        <label for="c-horas">Horas a la semana, cada una</label>
+        <output for="c-horas" data-o="horas">3 h</output>
+        <input id="c-horas" type="range" min="1" max="15" value="3" data-i="horas">
       </div>
       <div class="calc-campo">
-        <label for="c-precio">Precio medio por persona y mes</label>
-        <output for="c-precio" data-o="precio">15 €</output>
-        <input id="c-precio" type="range" min="5" max="60" step="1" value="15" data-i="precio">
+        <label for="c-coste">Coste de una hora de trabajo</label>
+        <output for="c-coste" data-o="coste">25 €</output>
+        <input id="c-coste" type="range" min="15" max="60" step="1" value="25" data-i="coste">
       </div>
       <div class="calc-res" aria-live="polite">
-        <div><span>Al año</span><b data-o="anual">5.400,00 €</b></div>
-        <div><span>En cinco años</span><b data-o="cinco">27.000,00 €</b></div>
+        <div><span>Horas al año</span><b data-o="horasAnyo">414 h</b></div>
+        <div><span>Le cuesta al año</span><b class="brillo" data-o="anual">10.350,00 €</b></div>
       </div>
-      <a class="btn btn-prim" href="#contacto" data-interes="Sustituir suscripciones">Estudiar mi caso</a>
+      <p class="calc-nota">Con 46 semanas de trabajo al año. Una aplicación no elimina todas esas horas, pero sí la mayoría.</p>
+      <a class="btn btn-prim" href="#contacto" data-interes="Convertir mi Excel en aplicación">Convertir mi Excel</a>
     </form>
   </div>
 </section>
 
-<!-- ======================= cómo trabajamos ======================= -->
-<section class="secc secc-oscura" id="como">
+<!-- ======================= cómo funciona ======================= -->
+<section class="secc" id="como">
   <div class="cont">
     <div class="secc-cab" data-revelar>
-      <p class="pill pill-oscura">Cómo trabajamos</p>
-      <h2>Nunca le dejamos solo con un acceso y un manual</h2>
-      <p>Igual para un producto que para una aplicación a medida.</p>
+      <p class="pill">Cómo funciona</p>
+      <h2>De su archivo a su aplicación, en cuatro pasos</h2>
     </div>
     <ol class="pasos">
-      <li data-revelar><span class="paso-n">1</span><b>Conversación</b><p>Nos enseña cómo trabaja hoy: su Excel, su herramienta, su proceso. Entendemos qué le quita tiempo. Sin coste.</p></li>
-      <li data-revelar><span class="paso-n">2</span><b>Propuesta por escrito</b><p>Qué hará la aplicación, cuánto cuesta y cuándo estará. Antes de empezar, sin sorpresas después.</p></li>
-      <li data-revelar><span class="paso-n">3</span><b>Puesta en marcha con usted</b><p>En una reunión importamos sus datos (su Excel, siempre; otras herramientas, cuando es posible), creamos los accesos y la dejamos funcionando.</p></li>
-      <li data-revelar><span class="paso-n">4</span><b>El primer mes, a su lado</b><p>Resolvemos dudas, ajustamos lo que haga falta y formamos a su equipo. Después, seguimos a una llamada.</p></li>
+      <li data-revelar><span class="paso-n">1</span><b>Nos enseña su Excel</b><p>En una videollamada o por correo. Nos cuenta qué hace y qué le duele. Sin coste.</p></li>
+      <li data-revelar><span class="paso-n">2</span><b>Precio cerrado</b><p>Le decimos qué tamaño es, qué hará la aplicación y cuándo estará. Por escrito, antes de empezar.</p></li>
+      <li data-revelar><span class="paso-n">3</span><b>Primera versión con sus datos</b><p>La prueba con sus números reales, no con una demo. La ajustamos con usted.</p></li>
+      <li data-revelar><span class="paso-n">4</span><b>Puesta en marcha</b><p>Importamos su histórico, creamos los usuarios y formamos a su equipo. El primer mes, a su lado.</p></li>
     </ol>
-    <dl class="garantias">
-      <div data-revelar><dt>Datos en Europa</dt><dd>Servidores y base de datos en la Unión Europea, con copias de seguridad.</dd></div>
-      <div data-revelar><dt>Sus datos son suyos</dt><dd>Puede descargarlos cuando quiera, en un formato abierto.</dd></div>
-      <div data-revelar><dt>Quien lo programa le atiende</dt><dd>Sin comerciales ni intermediarios: habla con quien construye su aplicación.</dd></div>
-      <div data-revelar><dt>Desde el móvil</dt><dd>Se instala como una app más en el teléfono, sin pasar por las tiendas.</dd></div>
-    </dl>
   </div>
 </section>
 
@@ -378,25 +351,26 @@
       <h2>Lo que suelen preguntarnos</h2>
     </div>
     <div class="faq" data-revelar>
-      <details><summary>¿Cuánto cuesta una aplicación a medida?</summary><p>Depende de lo que tenga que hacer. Los proyectos parten de 3.000 € y tienen una cuota de mantenimiento desde 90 € al mes. Tras la primera conversación le damos una propuesta cerrada, con precio y plazo, antes de empezar.</p></details>
-      <details><summary>Llevamos años con nuestro Excel. ¿Se pierde todo?</summary><p>Al contrario: partimos de él. Importamos sus datos y respetamos su forma de trabajar. Si algo del Excel estaba mal calculado, se lo explicamos y lo corregimos juntos.</p></details>
-      <details><summary>¿Qué significa «puesta en marcha con nosotros»?</summary><p>Que no le damos un acceso y adiós. Nos reunimos, metemos sus datos (su Excel siempre; otras herramientas, cuando es factible), creamos los usuarios y le enseñamos a usarla. El primer mes estamos pendientes.</p></details>
-      <details><summary>¿Dónde están mis datos? ¿Y la inteligencia artificial?</summary><p>En servidores de la Unión Europea. A la inteligencia artificial solo se envía lo necesario para cada tarea (una factura, un extracto), con proveedores que firman un acuerdo de tratamiento de datos. Siempre puede usar la aplicación sin ella.</p></details>
-      <details><summary>¿Qué incluye la web por 190 €?</summary><p>Una página con hasta cinco apartados, hecha a mano con el aspecto de su marca y perfecta en el móvil; dominio .com o .es y alojamiento del primer año a su nombre; formulario de contacto y textos legales básicos. Usted nos pasa textos y fotos en un formulario y hay una ronda de cambios incluida. Las plazas se abren por tandas; al reservar le decimos el plazo. Los cambios posteriores y el mantenimiento van aparte, desde 30 € al mes.</p></details>
-      <details><summary>¿Cobran por usuario?</summary><p>No. Flow y las aplicaciones a medida se pagan con una cuota por empresa, y dentro entran las personas que haga falta. Es la diferencia con las herramientas genéricas, que cobran por cada usuario y cada mes.</p></details>
-      <details><summary>¿Y si mañana quiero cambiar algo?</summary><p>Para eso es a medida. Las mejoras se hacen sobre su aplicación, sin esperar a que un fabricante decida añadirlas a su lista.</p></details>
+      <details><summary>Mi Excel tiene macros y fórmulas muy complicadas. ¿Se puede?</summary><p>Sí. Flow nació de una plantilla con macros, decenas de hojas y años de arreglos. Lo complicado se convierte en cálculos probados, que ya no se rompen al tocar una celda. Ese caso es el tamaño Macro.</p></details>
+      <details><summary>¿Tengo que dejar de usar Excel?</summary><p>No. Su aplicación exporta a Excel cuando lo necesite: para su asesoría, para el banco o para hacer sus propias cuentas. Lo que deja de hacer es depender de un archivo.</p></details>
+      <details><summary>¿Cobran por usuario?</summary><p>No. Se paga una cuota por empresa y dentro entran las personas que haga falta. Es la diferencia con casi todos los programas, que cobran por cada usuario y cada mes.</p></details>
+      <details><summary>¿Cuánto tardan?</summary><p>Depende del tamaño y de la cola: hacemos pocas a la vez para hacerlas bien. El plazo se lo damos por escrito en la propuesta, antes de empezar.</p></details>
+      <details><summary>Mi Excel tiene datos delicados. ¿Cómo se lo enseño?</summary><p>No lo envíe por el formulario. Puede enseñarlo en una videollamada o mandarnos una copia con los datos cambiados. Antes de recibir datos reales firmamos un acuerdo de confidencialidad y de tratamiento de datos.</p></details>
+      <details><summary>¿Dónde quedan mis datos?</summary><p>En servidores de la Unión Europea, con copias de seguridad. Son suyos: puede descargarlos cuando quiera. A la inteligencia artificial solo se le envía lo necesario para cada tarea, y puede usar la aplicación sin ella.</p></details>
+      <details><summary>¿Y si después quiero cambiar o añadir algo?</summary><p>La cuota mensual incluye servidor, copias, soporte y pequeños ajustes. Las funciones nuevas se presupuestan aparte, también con precio cerrado.</p></details>
       <details><summary>¿Puedo probar Flow antes de decidir?</summary><p>Sí. Le damos de alta con 30 días gratis, importamos su Excel de tesorería y le ayudamos a ponerla en marcha. Si no sigue, sus datos se borran.</p></details>
     </div>
   </div>
 </section>
 
 <!-- ======================= contacto ======================= -->
-<section class="secc secc-gris" id="contacto">
+<section class="secc" id="contacto">
   <div class="cont contacto">
     <div class="contacto-txt" data-revelar>
       <p class="pill">Contacto</p>
-      <h2>Cuéntenos qué le quita tiempo</h2>
-      <p>Le respondemos en un día laborable. Si lo prefiere, escríbanos directamente a <a href="mailto:hola@iharlabs.com">hola@iharlabs.com</a>.</p>
+      <h2>Enséñenos su <span class="celda">Excel</span></h2>
+      <p>Cuéntenos qué hace y qué le gustaría que hiciera. Le respondemos en un día laborable con el tamaño que le corresponde y los siguientes pasos.</p>
+      <p class="contacto-correo">O escríbanos a <a href="mailto:hola@iharlabs.com">hola@iharlabs.com</a></p>
     </div>
     <form class="form tarjeta" id="form-contacto" data-endpoint="https://api.web3forms.com/submit" data-clave="d937025f-797b-4668-9349-6230d847dc70" novalidate data-revelar>
       <div class="fila2">
@@ -410,19 +384,15 @@
       <div class="campo">
         <label for="f-interes">Qué le interesa</label>
         <select id="f-interes" name="interes">
-          <option>Pasar un Excel a aplicación</option>
-          <option>Sustituir suscripciones</option>
-          <option>Automatizar un proceso</option>
-          <option>Web a 190 €</option>
-          <option>Flow</option>
-          <option>Turnos</option>
-          <option>Fichaje</option>
+          <option>Convertir mi Excel en aplicación</option>
+          <option>Flow (tesorería)</option>
+          <option>Turnos y fichaje</option>
           <option>Otra cosa</option>
         </select>
       </div>
       <div class="campo">
-        <label for="f-mensaje">Qué le gustaría mejorar</label>
-        <textarea id="f-mensaje" name="mensaje" rows="4" required placeholder="Por ejemplo: llevamos la tesorería en un Excel y cada lunes perdemos la mañana cuadrando bancos."></textarea>
+        <label for="f-mensaje">Qué hace su Excel y qué le gustaría mejorar</label>
+        <textarea id="f-mensaje" name="mensaje" rows="4" required placeholder="Por ejemplo: llevamos los pedidos en un Excel con cinco hojas y cada semana alguien pisa los cambios de otro."></textarea>
       </div>
       <input type="checkbox" name="botcheck" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="campo campo-check">
@@ -440,11 +410,11 @@
 <footer class="pie">
   <div class="cont pie-in">
     <div class="pie-marca">
-      <a class="logo logo-claro" href="#arriba"><img src="img/marca.svg" alt="" width="28" height="28"><span>Ihar Labs</span></a>
-      <p>Software hecho para su empresa: productos propios y aplicaciones a medida.</p>
+      <a class="logo" href="#arriba"><img src="img/marca.svg" alt="" width="28" height="28"><span>Ihar Labs</span></a>
+      <p>De Excel a su propia aplicación.</p>
     </div>
     <nav class="pie-enl" aria-label="Enlaces">
-      <a href="#que-hacemos">Qué hacemos</a><a href="#productos">Productos</a><a href="#a-medida">A medida</a><a href="#web">Web por 190 €</a><a href="https://flow.iharlabs.com" rel="noopener">Entrar en Flow</a><a href="#contacto">Contacto</a>
+      <a href="#apps">Apps hechas</a><a href="#precios">Precios</a><a href="#como">Cómo funciona</a><a href="https://flow.iharlabs.com" rel="noopener">Entrar en Flow</a><a href="#contacto">Contacto</a>
     </nav>
     <nav class="pie-enl" aria-label="Legal">
       <a href="legal/aviso-legal.html">Aviso legal</a><a href="legal/privacidad.html">Privacidad</a><a href="legal/privacidad.html#cookies">Cookies</a>
