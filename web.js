@@ -58,6 +58,44 @@
     const sel = form?.elements.interes; if (!sel) return;
     const op = [...sel.options].find((x) => x.text === a.dataset.interes); if (op) sel.value = op.value;
   }));
+  // desde la página de Flow se llega con ?interes=flow: el formulario ya sale con «Flow» elegido
+  if (form && new URLSearchParams(location.search).get('interes') === 'flow') {
+    const op = [...form.elements.interes.options].find((x) => x.text.startsWith('Flow')); if (op) form.elements.interes.value = op.value;
+  }
+
+  // plantilla gratis (página de Flow): se piden nombre, empresa y correo, y aparece la descarga
+  const fp = $('#form-plantilla');
+  if (fp) {
+    const estado = $('.form-estado', fp);
+    const decir = (t, clase = '') => { estado.textContent = t; estado.className = `form-estado ${clase}`.trim(); };
+    const mostrarDescarga = () => { fp.hidden = true; const ok = $('#descarga-ok'); ok.hidden = false; $('a', ok)?.focus(); };
+    fp.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = fp.elements;
+      $$('.mal', fp).forEach((x) => { x.classList.remove('mal'); x.removeAttribute('aria-invalid'); }); $$('.campo-error', fp).forEach((x) => x.remove());
+      const errores = [];
+      if (!f.nombre.value.trim()) errores.push([f.nombre, 'Escriba su nombre.']);
+      if (!f.empresa.value.trim()) errores.push([f.empresa, 'Escriba el nombre de su empresa.']);
+      if (!f.correo.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.correo.value.trim())) errores.push([f.correo, 'Escriba un correo como nombre@empresa.com.']);
+      if (!f.privacidad.checked) errores.push([f.privacidad, 'Marque la casilla de privacidad para descargarla.']);
+      if (errores.length) {
+        errores.forEach(([c, t]) => { c.classList.add('mal'); c.setAttribute('aria-invalid', 'true'); const p = document.createElement('p'); p.className = 'campo-error'; p.textContent = t; c.parentElement.appendChild(p); });
+        decir('Falta algo: revise lo marcado.', 'error'); errores[0][0].focus(); return;
+      }
+      if (f.botcheck.checked) return;
+      const datos = { nombre: f.nombre.value.trim(), empresa: f.empresa.value.trim(), correo: f.correo.value.trim(), acepta_novedades: f.novedades.checked ? 'Sí: se le puede escribir sobre Flow' : 'No: no escribirle' };
+      const boton = $('button[type=submit]', fp); boton.disabled = true; decir('Preparando la descarga…');
+      try {
+        if (fp.dataset.endpoint && fp.dataset.clave) {
+          await fetch(fp.dataset.endpoint, {
+            method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ access_key: fp.dataset.clave, subject: `Plantilla de tesorería · ${datos.empresa}`, from_name: 'Web de Ihar Labs · Flow', replyto: datos.correo, ...datos }),
+          });
+        }
+      } catch { /* si el aviso no llega, la descarga se da igual */ }
+      mostrarDescarga();
+    });
+  }
 
   // formulario: validación en texto, envío por Web3Forms; sin servicio, abre el correo del visitante
   if (form) {

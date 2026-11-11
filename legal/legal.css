@@ -14,3 +14,6 @@ td, th { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom
 th { width: 34%; color: #5b6779; font-weight: 600; }
 a { color: #2b58c8; }
 .pie { text-align: center; color: #5b6779; font-size: 14px; padding-bottom: 32px; }
+
+main ul { margin: 8px 0; padding-left: 22px; }
+main li { margin: 6px 0; }
