@@ -194,8 +194,10 @@ a { color: var(--azul); text-decoration-thickness: 1px; text-underline-offset: 3
 .lista li { position: relative; padding-left: 28px; font-size: 16px; color: #dfe6fb; }
 .lista li::before { content: ''; position: absolute; left: 0; top: .38em; width: 16px; height: 16px; border-radius: 50%; background: rgba(47, 209, 138, .16) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%232fd18a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/11px no-repeat; }
 .tarifa { display: grid; grid-template-columns: auto 1fr; gap: 8px 28px; align-items: center; margin: 28px 0 24px; padding: 20px 22px; border-radius: 18px; background: rgba(0, 0, 0, .28); border: 1px solid var(--borde); }
-.tarifa-precio b { display: block; font-size: 44px; line-height: 1; letter-spacing: -.04em; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tarifa-precio b { display: block; font-size: 40px; line-height: 1; letter-spacing: -.04em; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .tarifa-precio span { display: block; margin-top: 6px; font-size: 13.5px; color: var(--texto-2); max-width: 16ch; }
+.tarifa-sola { grid-template-columns: 1fr; }
+.tarifa-sola ul { padding-left: 0 !important; border-left: 0 !important; }
 .tarifa ul { list-style: none; margin: 0; padding: 0 0 0 28px; border-left: 1px solid var(--borde); display: grid; gap: 6px; font-size: 14.5px; color: var(--texto-2); }
 .app-vis { position: relative; }
 .pestanas { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
@@ -216,7 +218,7 @@ a { color: var(--azul); text-decoration-thickness: 1px; text-underline-offset: 3
 .packs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
 .pack { position: relative; display: flex; flex-direction: column; padding: 32px; border-radius: 28px; border: 1px solid var(--borde); background: linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .015)); }
 .pack h3 { font-size: 26px; }
-.pack-para { margin-top: 10px; color: var(--texto-2); font-size: 15.5px; min-height: 3.1em; }
+.pack-para { margin-top: 10px; padding-bottom: 24px; border-bottom: 1px solid var(--borde); color: var(--texto-2); font-size: 15.5px; min-height: calc(3.1em + 24px); }
 .pack-precio { margin-top: 22px; padding-bottom: 24px; border-bottom: 1px solid var(--borde); }
 .pack-precio b { display: block; font-size: clamp(34px, 3.4vw, 46px); line-height: 1; letter-spacing: -.04em; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .pack-precio span { display: block; margin-top: 8px; color: var(--texto-2); font-size: 15px; }
